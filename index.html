@@ -1,203 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931</title>
 
   <!-- SEO Meta Tags -->
-  <meta name="description" content="Play Minecraft online free with Eaglercraft! Unblocked versions hosted by StaticQuasar931. No downloads. Works on Chromebooks and at school.">
-  <meta name="keywords" content="Minecraft, Eaglercraft, Minecraft unblocked, Eaglercraft 1.8.8, Eaglercraft 1.5.2, staticquasar931 Minecraft, play Minecraft online, unblocked Minecraft for school, no download Minecraft, online Minecraft clone, HTML5 Minecraft, Eaglercraft school safe, fix Minecraft cursor, static quasar minecraft, Minecraft Chromebook, Eaglercraft GitHub, block game unblocked, pixel builder, building game, sandbox building game unblocked, staticquasar Minecraft versions, staticquasar931 games, minecraft clone HTML5">
-  <meta name="robots" content="index, follow">
-  <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931">
-  <meta property="og:description" content="Unblocked Minecraft with multiple versions hosted by StaticQuasar931. Choose your favorite and play now!">
-  <meta property="og:url" content="https://sites.google.com/view/staticquasar931/gm3z/minecraft">
-  <meta property="og:type" content="game">
-  <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg">
+  <meta name="description" content="Play Minecraft online free with Eaglercraft! Unblocked versions hosted by StaticQuasar931. No downloads. Works on Chromebooks and at school." />
+  <meta name="keywords" content="Minecraft, Eaglercraft, Minecraft unblocked, Eaglercraft 1.8.8, Eaglercraft 1.5.2, staticquasar931 Minecraft, play Minecraft online, unblocked Minecraft for school, no download Minecraft, online Minecraft clone, HTML5 Minecraft, Eaglercraft school safe, fix Minecraft cursor, static quasar minecraft, Minecraft Chromebook, Eaglercraft GitHub, block game unblocked, pixel builder, building game, sandbox building game unblocked, staticquasar Minecraft versions, staticquasar931 games, minecraft clone HTML5, block g@me unblocked, sandbox g@me school safe" />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931" />
+  <meta property="og:description" content="Unblocked Minecraft with multiple versions hosted by StaticQuasar931. Choose your favorite and play now!" />
+  <meta property="og:url" content="https://sites.google.com/view/staticquasar931/gm3z/minecraft" />
+  <meta property="og:type" content="game" />
+  <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
   <link rel="icon" href="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
 
   <style>
-    html, body {
-      margin: 0;
-      padding: 0;
-      height: 100%;
-      width: 100%;
-      background: #111;
-      color: #fff;
-      font-family: 'Segoe UI', sans-serif;
-      overflow: hidden;
+    html, body{
+      margin:0;
+      padding:0;
+      height:100%;
+      width:100%;
+      background:#111;
+      color:#fff;
+      font-family:'Segoe UI',sans-serif;
+      overflow:hidden;
     }
-    .menu {
-      position: absolute;
-      top: 20px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      background-color: #1c1c1c;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-      z-index: 1000;
-      text-align: center;
-      transition: opacity 0.3s ease;
+    .menu{
+      position:absolute;
+      top:20px;
+      left:50%;
+      transform:translateX(-50%);
+      display:flex;
+      flex-direction:column;
+      gap:15px;
+      background:#1c1c1c;
+      padding:30px;
+      border-radius:16px;
+      box-shadow:0 0 20px rgba(0,255,255,.2);
+      z-index:1000;
+      text-align:center;
     }
-    .menu button {
-      background: linear-gradient(135deg, #111, #333);
-      color: #0ff;
-      border: 2px solid #0ff;
-      padding: 15px 25px;
-      border-radius: 10px;
-      font-size: 18px;
-      cursor: pointer;
-      will-change: transform, background-color;
-      transition: 0.3s ease;
+    .menu h2{margin:0 0 10px 0}
+    .menu button{
+      background:linear-gradient(135deg,#111,#333);
+      color:#0ff;
+      border:2px solid #0ff;
+      padding:15px 25px;
+      border-radius:10px;
+      font-size:18px;
+      cursor:pointer;
+      transition:.3s ease;
     }
-    .menu button:hover {
-      background: #0ff;
-      color: #111;
-      transform: scale(1.05);
+    .menu button:hover{
+      background:#0ff;
+      color:#111;
+      transform:scale(1.05);
     }
-    iframe {
-      width: 100%;
-      height: 100%;
-      border: none;
-      display: none;
+    iframe{
+      width:100%;
+      height:100%;
+      border:none;
+      display:none;
     }
-    #iframeContainer {
-      width: 100%;
-      height: 100%;
-      position: relative;
+    #iframeContainer{
+      position:relative;
+      width:100%;
+      height:100%;
     }
-    .backBtn {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 1001;
-      background: #0ff;
-      color: #000;
-      padding: 12px 25px;
-      border-radius: 10px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      display: none;
-      box-shadow: 0 0 10px #0ff;
+    .backBtn{
+      position:absolute;
+      top:20px;
+      right:20px;
+      z-index:1001;
+      background:#0ff;
+      color:#000;
+      padding:12px 25px;
+      border-radius:10px;
+      font-weight:bold;
+      border:none;
+      cursor:pointer;
+      display:none;
+      box-shadow:0 0 10px #0ff;
     }
-    .credit {
-      font-size: 16px;
-      color: #0ff;
-      text-shadow: 0 0 5px #0ff;
-      margin-top: 10px;
+    .credit{font-size:16px;color:#0ff;text-shadow:0 0 5px #0ff;margin-top:10px}
+    .credit a{color:#0ff;text-decoration:none;font-weight:bold}
+
+    #staticMenu{
+      position:fixed;
+      top:15px;
+      left:15px;
+      background:#222;
+      padding:12px 38px 12px 18px;
+      border-radius:14px;
+      font-size:15px;
+      color:#0ff;
+      font-weight:bold;
+      font-family:Arial, sans-serif;
+      animation:twinkle 2s infinite alternate;
+      box-shadow:0 0 10px rgba(0,255,255,.3);
+      z-index:9999;
     }
-    .credit a {
-      color: #0ff;
-      text-decoration: none;
-      font-weight: bold;
+    #staticMenu a{color:#0ff;text-decoration:none}
+    #staticMenuClose{
+      position:absolute;
+      top:2px;
+      right:8px;
+      cursor:pointer;
+      font-weight:bold;
+      font-size:18px;
     }
-    #staticMenu {
-      position: fixed;
-      bottom: 15px;
-      right: 15px;
-      background: #222;
-      padding: 12px 18px;
-      border-radius: 14px;
-      font-size: 15px;
-      color: #0ff;
-      font-weight: bold;
-      font-family: Arial, sans-serif;
-      animation: twinkle 4s infinite alternate;
-      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
-      z-index: 9999;
+    @keyframes twinkle{
+      0%{opacity:.6;transform:scale(1)}
+      100%{opacity:1;transform:scale(1.05)}
     }
-    #staticMenu a {
-      color: #0ff;
-      text-decoration: none;
-    }
-    @keyframes twinkle {
-      0% { opacity: 0.7; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.02); }
-    }
-    .seo-content {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
+
+    .seo-content{
+      position:absolute;
+      width:1px;height:1px;
+      overflow:hidden;
+      clip:rect(1px,1px,1px,1px);
+      white-space:nowrap;
     }
   </style>
-
-  <script>
-    let currentId = "v1";
-
-    function loadGame(id) {
-      if (id === currentId) return; // Don't reload if clicking same game
-      document.getElementById('menu').style.display = 'none';
-      document.getElementById('backButton').style.display = 'block';
-
-      const currentIframe = document.getElementById(currentId);
-      const newIframe = document.getElementById(id);
-
-      if (currentIframe) {
-        currentIframe.src = "";
-        currentIframe.style.display = "none";
-      }
-
-      if (newIframe.src === "") {
-        if (id === 'v1') newIframe.src = "https://eaglercraft.com/mc/1.8.8/";
-        else if (id === 'v2') newIframe.src = "https://staticquasar931.github.io/eaglercrafthtml/";
-        else if (id === 'v3') newIframe.src = "https://staticquasar931.github.io/Eaglercraft1.5.2/";
-        else if (id === 'v4') newIframe.src = "https://staticquasar931.github.io/eaglercrafthtml/";
-      }
-
-      newIframe.style.display = "block";
-      newIframe.focus();
-
-      currentId = id;
-    }
-
-    function goBack() {
-      document.getElementById('menu').style.display = 'flex';
-      document.getElementById('backButton').style.display = 'none';
-      const currentIframe = document.getElementById(currentId);
-      if (currentIframe) currentIframe.style.display = 'none';
-    }
-
-    window.onbeforeunload = function () {
-      return "Are you sure you want to leave? Your progress may not be saved.";
-    };
-  </script>
 </head>
-
 <body>
+
   <div class="menu" id="menu">
     <h2 style="color:#0ff;">Choose a Minecraft Version</h2>
     <button onclick="loadGame('v1')">Minecraft (Main Version)</button>
-    <button onclick="loadGame('v2')">Main Backup (Multiplayer only)</button>
-    <button onclick="loadGame('v3')">Eaglercraft 1.5.2</button>
-    <button onclick="loadGame('v4')">Eaglercraft (Multiplayer only)</button>
+    <button onclick="loadGame('v2')">Main Backup (Multiplayer Only)</button>
+    <button onclick="loadGame('v3')">Eaglercraft&nbsp;1.5.2</button>
+    <button onclick="loadGame('v4')">Eaglercraft (Multiplayer Only)</button>
     <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
   </div>
 
   <button class="backBtn" id="backButton" onclick="goBack()">Back to Versions</button>
 
   <div id="iframeContainer">
-    <iframe id="v1" src="https://eaglercraft.com/mc/1.8.8/" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="eager"></iframe>
-    <iframe id="v2" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
-    <iframe id="v3" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
-    <iframe id="v4" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
+    <iframe id="v1" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen"></iframe>
+    <iframe id="v2" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen"></iframe>
+    <iframe id="v3" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen"></iframe>
+    <iframe id="v4" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen"></iframe>
   </div>
 
   <div id="staticMenu">
+    <span id="staticMenuClose">&times;</span>
     <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank">More Unblocked Games by Static</a>
   </div>
 
   <div class="seo-content">
-    <h1>Play Minecraft Online (Eaglercraft) Unblocked - StaticQuasar931</h1>
-    <p>Choose from Minecraft 1.8.8, Minecraft 1.5.2, multiplayer versions, and more. Play free online Minecraft clones with no download, unblocked for school and Chromebook users. Sandbox builder, block game, multiplayer pixel builder experience – hosted by StaticQuasar931!</p>
-    <p>Tags: play Minecraft at school, eaglercraft unblocked, Minecraft browser game, sandbox builder online, pixel building simulator unblocked, no download block game, free Minecraft online alternative, staticquasar931 games, Minecraft clones playable online, eaglercraft GitHub hosted.</p>
+    <h1>Minecraft Hub – StaticQuasar931 Unblocked Versions</h1>
+    <p>Welcome to the ultimate Minecraft browser-based experience from StaticQuasar931!  Select from four distinct builds of Eaglercraft, including the ever-popular 1.8.8 release, the classic 1.5.2 nostalgia edition, and two multiplayer-only backups that guarantee a lag-free survival or creative session even during school hours.  Every version runs entirely in your browser, so there are no downloads, no installers, and absolutely no risk of school filters or admin blocks.  Whether you’re on a Chromebook, Windows laptop, or Mac, the game launches in seconds and adjusts automatically to full-screen for immersive play.</p>
+    <p>Our hub is engineered for lightning-fast loading: the main 1.8.8 build silently preloads as soon as the page opens, while the other editions remain dormant until you pick them—saving bandwidth and keeping memory overhead low on those classroom devices.  Because only one world instance runs at any moment, you can switch between versions without crashes or duplicate audio.  Built-in pointer-lock support delivers the authentic first-person feel, and our custom sandbox settings allow fullscreen mode, modals, and safe pop-ups needed for servers.  Bookmark this hub, share it with friends, and explore a limitless block universe right from school!</p>
+    <p>Popular tags and phrases: Eaglercraft hub unblocked, Minecraft HTML5 Chromebook, play pixel builder g@me at school, online sandbox block builder, free browser survival, multiplayer crafting g@me, school-safe Eaglercraft GitHub mirror, lag-free block g@me, creative building world, StaticQuasar Minecraft clones, blocky adventure, browser voxel universe creator.</p>
   </div>
+
+  <script>
+    const sources = {
+      v1: "https://eaglercraft.com/mc/1.8.8/",
+      v2: "https://staticquasar931.github.io/eaglercrafthtml/",
+      v3: "https://staticquasar931.github.io/Eaglercraft1.5.2/",
+      v4: "https://staticquasar931.github.io/eaglercrafthtml/"
+    };
+
+    function loadGame(id){
+      document.getElementById("menu").style.display="none";
+      document.getElementById("backButton").style.display="block";
+
+      document.querySelectorAll("iframe").forEach(f=>{
+        if(f.id!==id){
+          f.removeAttribute("src");
+          f.style.display="none";
+        }
+      });
+
+      const selected=document.getElementById(id);
+      if(!selected.src) selected.src=sources[id];
+      selected.style.display="block";
+    }
+
+    function goBack(){
+      document.getElementById("menu").style.display="flex";
+      document.getElementById("backButton").style.display="none";
+      document.querySelectorAll("iframe").forEach(f=>{
+        f.removeAttribute("src");
+        f.style.display="none";
+      });
+    }
+
+    window.onbeforeunload=()=>"Are you sure you want to leave? Your progress may not be saved.";
+
+    window.addEventListener("resize",()=>{
+      document.querySelectorAll("iframe").forEach(f=>{
+        f.style.width="100%";
+        f.style.height="100%";
+      });
+    });
+
+    window.addEventListener("DOMContentLoaded",()=>{
+      const main=document.getElementById("v1");
+      main.src=sources.v1;       // preload main build
+      main.style.display="none"; // keep hidden until chosen
+    });
+
+    // Static Menu close / reopen logic
+    (()=>{ 
+      const menu=document.getElementById("staticMenu");
+      const btn=document.getElementById("staticMenuClose");
+      btn.addEventListener("click",()=>{
+        menu.style.display="none";
+        setTimeout(()=>menu.style.display="block",180000); // 3 minutes
+      });
+    })();
+  </script>
 </body>
 </html>
