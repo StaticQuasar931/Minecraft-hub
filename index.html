@@ -148,7 +148,7 @@
       iframes.forEach(f => f.style.display = "none");
       const selected = document.getElementById(id);
       selected.style.display = "block";
-      selected.focus(); // attempt to make sure iframe gets key focus
+      selected.focus();
     }
 
     function goBack() {
@@ -168,6 +168,17 @@
         f.style.height = "100%";
       });
     };
+
+    window.onload = () => {
+      // Preload main version
+      const main = document.getElementById("v1");
+      main.style.display = "block";
+      main.style.visibility = "hidden"; // Hide visually but still load
+      setTimeout(() => {
+        main.style.visibility = "visible";
+        main.style.display = "none"; // Re-hide after preload
+      }, 500); // Small buffer for preloading
+    };
   </script>
 </head>
 <body>
@@ -175,9 +186,9 @@
   <div class="menu" id="menu">
     <h2 style="color:#0ff;">Choose a Minecraft Version</h2>
     <button onclick="loadGame('v1')">Minecraft (Main Version)</button>
-    <button onclick="loadGame('v2')">Fix Cursor Issues (Alt Version)</button>
+    <button onclick="loadGame('v2')">Main Backup (Multiplayer only)</button>
     <button onclick="loadGame('v3')">Eaglercraft 1.5.2</button>
-    <button onclick="loadGame('v4')">Eaglercraft (Mirror)</button>
+    <button onclick="loadGame('v4')">Eaglercraft (Multiplayer only)</button>
     <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
   </div>
 
@@ -194,11 +205,11 @@
     <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank">More Unblocked Games by Static</a>
   </div>
 
-  <!-- Hidden SEO block -->
+  <!-- Hidden SEO Content -->
   <div class="seo-content">
-    <h1>Play Minecraft (Eaglercraft) - Unblocked and Browser-Based</h1>
-    <p>Explore the world of Minecraft online with Eaglercraft – no download needed! These versions are hosted by StaticQuasar931 and fully unblocked for Chromebook and school users. Choose between versions like 1.8.8, 1.5.2, or alternatives with cursor fixes and smooth control. Access this amazing pixel-based sandbox world directly in your browser.</p>
-    <p>Popular searches: play minecraft at school, staticquasar minecraft, unblocked minecraft no download, eaglercraft online, chromebook minecraft, minecraft GitHub, staticquasar931 unblocked games, eaglercraft fix cursor issue, minecraft builder simulator, sandbox building game browser, static minecraft g@me, pixel craft unbl0cked, eaglercraft clone, eaglercraft site, minecraft alt versions.</p>
+    <h1>Minecraft Hub - StaticQuasar931 Unblocked Versions</h1>
+    <p>Welcome to the Minecraft Hub from StaticQuasar931! Choose from four unique versions of Eaglercraft, including 1.8.8, 1.5.2, multiplayer-only modes, and backups. Fully unblocked and playable in browser. No downloads required. Optimized for Chromebooks and school use.</p>
+    <p>Tags: Minecraft hub, Eaglercraft 1.8.8, Minecraft multiplayer school, online block builder, browser Minecraft, static quasar minecraft hub, play minecraft HTML5, unblocked eaglercraft github, staticquasar931 builder game, pixel builder sandbox, no download minecraft, online pixel world creator.</p>
   </div>
 
 </body>
