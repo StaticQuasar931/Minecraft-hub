@@ -27,7 +27,6 @@
       font-family: 'Segoe UI', sans-serif;
       overflow: hidden;
     }
-
     .menu {
       position: absolute;
       top: 20px;
@@ -43,7 +42,6 @@
       z-index: 1000;
       text-align: center;
     }
-
     .menu button {
       background: linear-gradient(135deg, #111, #333);
       color: #0ff;
@@ -54,26 +52,22 @@
       cursor: pointer;
       transition: 0.3s ease;
     }
-
     .menu button:hover {
       background: #0ff;
       color: #111;
       transform: scale(1.05);
     }
-
     iframe {
       width: 100%;
       height: 100%;
       border: none;
       display: none;
     }
-
     #iframeContainer {
       width: 100%;
       height: 100%;
       position: relative;
     }
-
     .backBtn {
       position: absolute;
       top: 20px;
@@ -89,20 +83,17 @@
       display: none;
       box-shadow: 0 0 10px #0ff;
     }
-
     .credit {
       font-size: 16px;
       color: #0ff;
       text-shadow: 0 0 5px #0ff;
       margin-top: 10px;
     }
-
     .credit a {
       color: #0ff;
       text-decoration: none;
       font-weight: bold;
     }
-
     #staticMenu {
       position: fixed;
       bottom: 15px;
@@ -118,17 +109,14 @@
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
       z-index: 9999;
     }
-
     #staticMenu a {
       color: #0ff;
       text-decoration: none;
     }
-
     @keyframes twinkle {
       0% { opacity: 0.6; transform: scale(1); }
       100% { opacity: 1; transform: scale(1.05); }
     }
-
     .seo-content {
       position: absolute;
       width: 1px;
@@ -144,28 +132,34 @@
       document.getElementById('menu').style.display = 'none';
       document.getElementById('backButton').style.display = 'block';
 
-      // Remove all old iframes except main preload
-      const iframes = document.querySelectorAll("iframe");
+      // Reset all iframes except selected
+      const iframes = document.querySelectorAll('iframe');
       iframes.forEach(f => {
-        f.style.display = "none";
+        if (f.id !== id) {
+          f.src = '';
+          f.style.display = 'none';
+        }
       });
 
-      // Load or show selected
       const selected = document.getElementById(id);
       if (!selected.src) {
+        if (id === "v1") selected.src = "https://eaglercraft.com/mc/1.8.8/";
         if (id === "v2") selected.src = "https://staticquasar931.github.io/eaglercrafthtml/";
         if (id === "v3") selected.src = "https://staticquasar931.github.io/Eaglercraft1.5.2/";
         if (id === "v4") selected.src = "https://staticquasar931.github.io/eaglercrafthtml/";
       }
-      selected.style.display = "block";
+      selected.style.display = 'block';
       selected.focus();
     }
 
     function goBack() {
       document.getElementById('menu').style.display = 'flex';
       document.getElementById('backButton').style.display = 'none';
-      const iframes = document.querySelectorAll("iframe");
-      iframes.forEach(f => f.style.display = "none");
+      const iframes = document.querySelectorAll('iframe');
+      iframes.forEach(f => {
+        f.src = '';
+        f.style.display = 'none';
+      });
     }
 
     window.onbeforeunload = function () {
@@ -180,10 +174,9 @@
     };
 
     window.onload = () => {
-      // Preload main version only
-      const main = document.getElementById("v1");
+      const main = document.getElementById('v1');
       main.src = "https://eaglercraft.com/mc/1.8.8/";
-      main.style.display = "none"; // stay hidden until clicked
+      main.style.display = "none";
     };
   </script>
 </head>
@@ -211,7 +204,6 @@
     <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank">More Unblocked Games by Static</a>
   </div>
 
-  <!-- Hidden SEO Content -->
   <div class="seo-content">
     <h1>Minecraft Hub - StaticQuasar931 Unblocked Versions</h1>
     <p>Welcome to the Minecraft Hub from StaticQuasar931! Choose from four unique versions of Eaglercraft, including 1.8.8, 1.5.2, multiplayer-only modes, and backups. Fully unblocked and playable in browser. No downloads required. Optimized for Chromebooks and school use.</p>
