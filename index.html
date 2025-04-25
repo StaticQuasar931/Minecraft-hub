@@ -41,7 +41,6 @@
       border-radius: 16px;
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
       z-index: 1000;
-      transition: opacity 0.3s ease;
       text-align: center;
     }
 
@@ -144,9 +143,20 @@
     function loadGame(id) {
       document.getElementById('menu').style.display = 'none';
       document.getElementById('backButton').style.display = 'block';
+
+      // Remove all old iframes except main preload
       const iframes = document.querySelectorAll("iframe");
-      iframes.forEach(f => f.style.display = "none");
+      iframes.forEach(f => {
+        f.style.display = "none";
+      });
+
+      // Load or show selected
       const selected = document.getElementById(id);
+      if (!selected.src) {
+        if (id === "v2") selected.src = "https://staticquasar931.github.io/eaglercrafthtml/";
+        if (id === "v3") selected.src = "https://staticquasar931.github.io/Eaglercraft1.5.2/";
+        if (id === "v4") selected.src = "https://staticquasar931.github.io/eaglercrafthtml/";
+      }
       selected.style.display = "block";
       selected.focus();
     }
@@ -170,14 +180,10 @@
     };
 
     window.onload = () => {
-      // Preload main version
+      // Preload main version only
       const main = document.getElementById("v1");
-      main.style.display = "block";
-      main.style.visibility = "hidden"; // Hide visually but still load
-      setTimeout(() => {
-        main.style.visibility = "visible";
-        main.style.display = "none"; // Re-hide after preload
-      }, 500); // Small buffer for preloading
+      main.src = "https://eaglercraft.com/mc/1.8.8/";
+      main.style.display = "none"; // stay hidden until clicked
     };
   </script>
 </head>
@@ -195,10 +201,10 @@
   <button class="backBtn" id="backButton" onclick="goBack()">Back to Versions</button>
 
   <div id="iframeContainer">
-    <iframe id="v1" src="https://eaglercraft.com/mc/1.8.8/" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
-    <iframe id="v2" src="https://staticquasar931.github.io/eaglercrafthtml/" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
-    <iframe id="v3" src="https://staticquasar931.github.io/Eaglercraft1.5.2/" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
-    <iframe id="v4" src="https://staticquasar931.github.io/eaglercrafthtml/" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
+    <iframe id="v1" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
+    <iframe id="v2" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
+    <iframe id="v3" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
+    <iframe id="v4" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
   </div>
 
   <div id="staticMenu">
