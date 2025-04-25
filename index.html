@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931</title>
 
   <!-- SEO Meta Tags -->
@@ -41,6 +41,7 @@
       box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
       z-index: 1000;
       text-align: center;
+      transition: opacity 0.3s ease;
     }
     .menu button {
       background: linear-gradient(135deg, #111, #333);
@@ -50,6 +51,7 @@
       border-radius: 10px;
       font-size: 18px;
       cursor: pointer;
+      will-change: transform, background-color;
       transition: 0.3s ease;
     }
     .menu button:hover {
@@ -105,7 +107,7 @@
       color: #0ff;
       font-weight: bold;
       font-family: Arial, sans-serif;
-      animation: twinkle 2s infinite alternate;
+      animation: twinkle 4s infinite alternate;
       box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
       z-index: 9999;
     }
@@ -114,8 +116,8 @@
       text-decoration: none;
     }
     @keyframes twinkle {
-      0% { opacity: 0.6; transform: scale(1); }
-      100% { opacity: 1; transform: scale(1.05); }
+      0% { opacity: 0.7; transform: scale(1); }
+      100% { opacity: 1; transform: scale(1.02); }
     }
     .seo-content {
       position: absolute;
@@ -128,60 +130,48 @@
   </style>
 
   <script>
+    let currentId = "v1";
+
     function loadGame(id) {
+      if (id === currentId) return; // Don't reload if clicking same game
       document.getElementById('menu').style.display = 'none';
       document.getElementById('backButton').style.display = 'block';
 
-      // Reset all iframes except selected
-      const iframes = document.querySelectorAll('iframe');
-      iframes.forEach(f => {
-        if (f.id !== id) {
-          f.src = '';
-          f.style.display = 'none';
-        }
-      });
+      const currentIframe = document.getElementById(currentId);
+      const newIframe = document.getElementById(id);
 
-      const selected = document.getElementById(id);
-      if (!selected.src) {
-        if (id === "v1") selected.src = "https://eaglercraft.com/mc/1.8.8/";
-        if (id === "v2") selected.src = "https://staticquasar931.github.io/eaglercrafthtml/";
-        if (id === "v3") selected.src = "https://staticquasar931.github.io/Eaglercraft1.5.2/";
-        if (id === "v4") selected.src = "https://staticquasar931.github.io/eaglercrafthtml/";
+      if (currentIframe) {
+        currentIframe.src = "";
+        currentIframe.style.display = "none";
       }
-      selected.style.display = 'block';
-      selected.focus();
+
+      if (newIframe.src === "") {
+        if (id === 'v1') newIframe.src = "https://eaglercraft.com/mc/1.8.8/";
+        else if (id === 'v2') newIframe.src = "https://staticquasar931.github.io/eaglercrafthtml/";
+        else if (id === 'v3') newIframe.src = "https://staticquasar931.github.io/Eaglercraft1.5.2/";
+        else if (id === 'v4') newIframe.src = "https://staticquasar931.github.io/eaglercrafthtml/";
+      }
+
+      newIframe.style.display = "block";
+      newIframe.focus();
+
+      currentId = id;
     }
 
     function goBack() {
       document.getElementById('menu').style.display = 'flex';
       document.getElementById('backButton').style.display = 'none';
-      const iframes = document.querySelectorAll('iframe');
-      iframes.forEach(f => {
-        f.src = '';
-        f.style.display = 'none';
-      });
+      const currentIframe = document.getElementById(currentId);
+      if (currentIframe) currentIframe.style.display = 'none';
     }
 
     window.onbeforeunload = function () {
       return "Are you sure you want to leave? Your progress may not be saved.";
     };
-
-    window.onresize = () => {
-      document.querySelectorAll("iframe").forEach(f => {
-        f.style.width = "100%";
-        f.style.height = "100%";
-      });
-    };
-
-    window.onload = () => {
-      const main = document.getElementById('v1');
-      main.src = "https://eaglercraft.com/mc/1.8.8/";
-      main.style.display = "none";
-    };
   </script>
 </head>
-<body>
 
+<body>
   <div class="menu" id="menu">
     <h2 style="color:#0ff;">Choose a Minecraft Version</h2>
     <button onclick="loadGame('v1')">Minecraft (Main Version)</button>
@@ -194,10 +184,10 @@
   <button class="backBtn" id="backButton" onclick="goBack()">Back to Versions</button>
 
   <div id="iframeContainer">
-    <iframe id="v1" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
-    <iframe id="v2" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
-    <iframe id="v3" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
-    <iframe id="v4" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"></iframe>
+    <iframe id="v1" src="https://eaglercraft.com/mc/1.8.8/" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="eager"></iframe>
+    <iframe id="v2" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
+    <iframe id="v3" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
+    <iframe id="v4" src="" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation" loading="lazy"></iframe>
   </div>
 
   <div id="staticMenu">
@@ -205,10 +195,9 @@
   </div>
 
   <div class="seo-content">
-    <h1>Minecraft Hub - StaticQuasar931 Unblocked Versions</h1>
-    <p>Welcome to the Minecraft Hub from StaticQuasar931! Choose from four unique versions of Eaglercraft, including 1.8.8, 1.5.2, multiplayer-only modes, and backups. Fully unblocked and playable in browser. No downloads required. Optimized for Chromebooks and school use.</p>
-    <p>Tags: Minecraft hub, Eaglercraft 1.8.8, Minecraft multiplayer school, online block builder, browser Minecraft, static quasar minecraft hub, play minecraft HTML5, unblocked eaglercraft github, staticquasar931 builder game, pixel builder sandbox, no download minecraft, online pixel world creator.</p>
+    <h1>Play Minecraft Online (Eaglercraft) Unblocked - StaticQuasar931</h1>
+    <p>Choose from Minecraft 1.8.8, Minecraft 1.5.2, multiplayer versions, and more. Play free online Minecraft clones with no download, unblocked for school and Chromebook users. Sandbox builder, block game, multiplayer pixel builder experience – hosted by StaticQuasar931!</p>
+    <p>Tags: play Minecraft at school, eaglercraft unblocked, Minecraft browser game, sandbox builder online, pixel building simulator unblocked, no download block game, free Minecraft online alternative, staticquasar931 games, Minecraft clones playable online, eaglercraft GitHub hosted.</p>
   </div>
-
 </body>
 </html>
