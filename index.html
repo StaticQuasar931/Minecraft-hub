@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Play Minecraft (Eaglercraft) - StaticQuasar931 Versions</title>
+
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: #111;
+      color: #fff;
+      font-family: 'Segoe UI', sans-serif;
+      overflow: hidden;
+    }
+
+    .menu {
+      position: absolute;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      background-color: #1c1c1c;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
+      z-index: 1000;
+      transition: opacity 0.3s ease;
+    }
+
+    .menu button {
+      background: #222;
+      color: #0ff;
+      border: none;
+      padding: 15px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .menu button:hover {
+      background: #0ff;
+      color: #000;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      display: none;
+    }
+
+    #iframeContainer {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .backBtn {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 1001;
+      background: #0ff;
+      color: #000;
+      padding: 10px 20px;
+      border-radius: 8px;
+      font-weight: bold;
+      border: none;
+      cursor: pointer;
+      display: none;
+    }
+
+    .credit {
+      position: absolute;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 14px;
+      color: #0ff;
+      text-shadow: 0 0 5px #0ff;
+    }
+
+    .credit a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+  </style>
+
+  <script>
+    function loadGame(src) {
+      document.getElementById('menu').style.display = 'none';
+      document.getElementById('backButton').style.display = 'block';
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach(f => f.style.display = "none");
+      const selected = document.getElementById(src);
+      selected.style.display = "block";
+    }
+
+    function goBack() {
+      document.getElementById('menu').style.display = 'flex';
+      document.getElementById('backButton').style.display = 'none';
+      const iframes = document.querySelectorAll("iframe");
+      iframes.forEach(f => f.style.display = "none");
+    }
+
+    window.onbeforeunload = function () {
+      return "Are you sure you want to leave? Your progress may not be saved.";
+    };
+
+    window.onresize = () => {
+      document.querySelectorAll("iframe").forEach(f => {
+        f.style.width = "100%";
+        f.style.height = "100%";
+      });
+    };
+  </script>
+</head>
+<body>
+
+  <div class="menu" id="menu">
+    <button onclick="loadGame('v1')">Minecraft (Main Version)</button>
+    <button onclick="loadGame('v2')">Fix Cursor Issues (Alt Version)</button>
+    <button onclick="loadGame('v3')">Eaglercraft 1.5.2</button>
+    <button onclick="loadGame('v4')">Eaglercraft (Mirror)</button>
+    <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
+  </div>
+
+  <button class="backBtn" id="backButton" onclick="goBack()">Back to Versions</button>
+
+  <div id="iframeContainer">
+    <iframe id="v1" src="https://eaglercraft.com/mc/1.8.8/" allowfullscreen></iframe>
+    <iframe id="v2" src="https://staticquasar931.github.io/eaglercrafthtml/" allowfullscreen></iframe>
+    <iframe id="v3" src="https://staticquasar931.github.io/Eaglercraft1.5.2/" allowfullscreen></iframe>
+    <iframe id="v4" src="https://staticquasar931.github.io/eaglercrafthtml/" allowfullscreen></iframe>
+  </div>
+
+</body>
+</html>
