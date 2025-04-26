@@ -7,23 +7,23 @@
 
   <!-- Canonical & SEO -->
   <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/minecraft" />
-  <meta name="description" content="Play Minecraft online free with Eaglercraft! Three full builds—including a 1.5.2 backup—and one multiplayer-only edition, all unblocked by StaticQuasar931. No downloads. Chromebook & school-safe." />
+  <meta name="description" content="Play Minecraft free in your browser with Eaglercraft! Main 1.8.8 build, a 1.5.2 backup, a second fallback, and a multiplayer-only edition—all unblocked by StaticQuasar931." />
   <meta name="keywords" content="Minecraft, Eaglercraft, Minecraft unblocked, Eaglercraft 1.8.8, Eaglercraft 1.5.2, Minecraft backup game, staticquasar931 Minecraft, play Minecraft online, unblocked Minecraft for school, HTML5 Minecraft, school safe block game, multiplayer only Minecraft, sandbox building game, sandbox building g@me" />
   <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931" />
-  <meta property="og:description" content="Choose the main 1.8.8 build, a 1.5.2 backup, a second fallback, or a multiplayer-only edition. All unblocked and ready to play!" />
+  <meta property="og:description" content="Choose the main 1.8.8 build, two backups, or a multiplayer-only edition. No downloads—just play!" />
   <meta property="og:url" content="https://sites.google.com/view/staticquasar931/gm3z/minecraft" />
   <meta property="og:type" content="game" />
   <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
   <link rel="icon" href="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
 
-  <!-- Pre-hint ONLY main build -->
+  <!-- Pre-hint ONLY the main build -->
   <link rel="preconnect" href="https://eaglercraft.com" />
   <link rel="dns-prefetch" href="https://eaglercraft.com" />
   <link rel="preload" as="document" href="https://eaglercraft.com/mc/1.8.8/" crossorigin />
 
   <style>
     :root{
-      --accent:#0ff;          /* original bright cyan */
+      --accent:#0ff;
       --bg:#111;
       --panel:#1b1b1b;
     }
@@ -31,9 +31,8 @@
     /* ===== MENU ===== */
     .menu{
       position:absolute;top:20px;left:50%;transform:translateX(-50%);
-      display:flex;flex-direction:column;gap:15px;
-      background:var(--panel);padding:30px;border-radius:16px;
-      box-shadow:0 0 22px rgba(0,255,255,.25);z-index:1000;text-align:center;
+      display:flex;flex-direction:column;gap:15px;background:var(--panel);
+      padding:30px;border-radius:16px;box-shadow:0 0 22px rgba(0,255,255,.25);z-index:1000;text-align:center;
     }
     .menu h2{margin:0 0 12px 0;color:var(--accent);}
     .menu button{
@@ -42,13 +41,12 @@
       font-size:18px;cursor:pointer;transition:.25s ease;
     }
     .menu button:hover{background:var(--accent);color:#111;transform:scale(1.07);}
-    /* ===== IFRAME AREA ===== */
+    /* ===== IFRAME & BACK BUTTON ===== */
     #iframeContainer{position:relative;width:100%;height:100%;}
     iframe{width:100%;height:100%;border:none;display:none;outline:none;}
     .backBtn{
-      position:absolute;top:20px;right:20px;z-index:1002;
-      background:var(--accent);color:#000;padding:12px 26px;border-radius:10px;
-      font-weight:bold;border:none;cursor:pointer;display:none;
+      position:absolute;top:20px;right:20px;z-index:1002;background:var(--accent);
+      color:#000;padding:12px 26px;border-radius:10px;font-weight:bold;border:none;cursor:pointer;display:none;
       box-shadow:0 0 10px var(--accent);
     }
     /* ===== STATIC MENU ===== */
@@ -56,8 +54,7 @@
       position:fixed;top:15px;left:15px;background:#222;
       padding:12px 42px 12px 18px;border-radius:14px;font-size:15px;
       color:var(--accent);font-weight:bold;font-family:Arial,Helvetica,sans-serif;
-      animation:twinkle 2s infinite alternate;
-      box-shadow:0 0 10px rgba(0,255,255,.35);z-index:9999;
+      animation:twinkle 2s infinite alternate;box-shadow:0 0 10px rgba(0,255,255,.35);z-index:9999;
     }
     #staticMenu a{color:var(--accent);text-decoration:none;}
     #staticMenuClose{position:absolute;top:2px;right:8px;cursor:pointer;font-weight:bold;font-size:18px;line-height:18px;}
@@ -71,24 +68,13 @@
 <body>
 
   <!-- ===== VERSION SELECTOR ===== -->
-  <div class="menu" id="menu" aria-label="Minecraft version selection">
+  <div class="menu" id="menu">
     <h2>Choose&nbsp;a&nbsp;Minecraft&nbsp;Version</h2>
 
-    <button onclick="loadGame('v1')" aria-label="Play main Minecraft build">
-      Minecraft&nbsp;(Main&nbsp;Version)
-    </button>
-
-    <button onclick="loadGame('v2')" aria-label="Play Minecraft main backup 1.5.2">
-      Minecraft&nbsp;Main&nbsp;Backup&nbsp;(1.5.2)
-    </button>
-
-    <button onclick="loadGame('v3')" aria-label="Play Minecraft second backup">
-      Minecraft&nbsp;Second&nbsp;Backup
-    </button>
-
-    <button onclick="loadGame('v4')" aria-label="Play multiplayer only build">
-      Eaglercraft&nbsp;(Multiplayer&nbsp;only)
-    </button>
+    <button onclick="loadGame('v1')">Minecraft&nbsp;(Main&nbsp;Version)</button>
+    <button onclick="loadGame('v2')">Minecraft&nbsp;Main&nbsp;Backup&nbsp;(1.5.2)</button>
+    <button onclick="loadGame('v3')">Minecraft&nbsp;Second&nbsp;Backup</button>
+    <button onclick="loadGame('v4')">Eaglercraft&nbsp;(Multiplayer&nbsp;only)</button>
 
     <div class="credit">Enhanced by&nbsp;<a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
   </div>
@@ -101,22 +87,22 @@
     <iframe id="v1" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map; keyboard-lock"></iframe>
 
     <iframe id="v2" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map; keyboard-lock"></iframe>
 
     <iframe id="v3" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map; keyboard-lock"></iframe>
 
     <iframe id="v4" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map; keyboard-lock"></iframe>
   </div>
 
   <!-- ===== STATIC MENU ===== -->
@@ -128,13 +114,13 @@
   <!-- ===== HIDDEN SEO BLOCK ===== -->
   <div class="seo-content">
     <h1>Minecraft Hub – StaticQuasar931 Unblocked Versions</h1>
-    <p>Play Minecraft in-browser with four curated Eaglercraft builds: the main 1.8.8 release, a full 1.5.2 backup, a second independent backup, and a dedicated multiplayer-only edition.  Every build launches fast, fits full-screen, and only one instance runs at a time—perfect for Chromebooks and school networks.</p>
-    <p>Tags: Minecraft hub unblocked, Eaglercraft online game, Eaglercraft g@me 1.8.8, browser sandbox block builder, multiplayer block g@me, StaticQuasar931 free games.</p>
+    <p>Play Minecraft in your browser with four curated Eaglercraft builds: the main 1.8.8 release, a 1.5.2 backup, a second independent backup, and a dedicated multiplayer-only edition. One instance runs at any time, so Chromebooks stay cool.</p>
+    <p>Tags: Minecraft hub unblocked, Eaglercraft online game, play block builder g@me at school, multiplayer block g@me, StaticQuasar931 free games.</p>
   </div>
 
   <!-- ===== SCRIPT ===== -->
   <script>
-    /* ---------- SOURCES ---------- */
+    /* ---------- SOURCE MAP ---------- */
     const sources={
       v1:"https://eaglercraft.com/mc/1.8.8/",
       v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/",
@@ -142,60 +128,76 @@
       v4:"https://staticquasar931.github.io/eaglercrafthtml/"
     };
 
-    let currentId=null; // track active frame
+    let currentId=null; // active frame id
 
-    function unloadFrame(frame){
+    const unloadFrame = frame =>{
       frame.removeAttribute('src');
       frame.style.display='none';
-    }
+      frame.dataset.loaded='';
+    };
+
+    const focusFrame = frame =>{
+      /* try twice – immediate + after load */
+      frame.focus();
+      setTimeout(()=>{try{frame.contentWindow.focus();}catch(e){}},100);
+    };
 
     function loadGame(id){
-      if(id===currentId) return;            // already active
+      if(id===currentId) return;                 // already active
 
-      document.getElementById('menu').style.display='none';
-      document.getElementById('backButton').style.display='block';
+      const menu=document.getElementById('menu');
+      const back=document.getElementById('backButton');
+      menu.style.display='none';
+      back.style.display='block';
 
-      /* Unload previous */
+      /* unload previous */
       if(currentId){
         unloadFrame(document.getElementById(currentId));
       }
 
       const target=document.getElementById(id);
 
-      // Ensure only ONE request happens – set src AFTER unload completes
+      // guarantee only ONE load request: set src after previous removed
       requestAnimationFrame(()=>{
         target.src=sources[id];
         target.style.display='block';
-        /* focus twice for stubborn browsers */
-        target.focus();
-        requestAnimationFrame(()=>{try{target.contentWindow.focus();}catch(e){}});
+        target.dataset.loaded='yes';
+        /* focus after load completes to restore typing */
+        target.onload=()=>focusFrame(target);
       });
 
       currentId=id;
     }
 
     function goBack(){
+      const menu=document.getElementById('menu');
+      const back=document.getElementById('backButton');
+
       if(currentId){
         unloadFrame(document.getElementById(currentId));
         currentId=null;
       }
-      document.getElementById('menu').style.display='flex';
-      document.getElementById('backButton').style.display='none';
 
-      /* Pre-cache main build again for instant relaunch */
+      menu.style.display='flex';
+      back.style.display='none';
+
+      /* silently keep main build cached but hidden */
       const main=document.getElementById('v1');
-      if(!main.src) main.src=sources.v1;
+      if(!main.dataset.loaded){
+        main.src=sources.v1;
+        main.dataset.loaded='yes';
+      }
       main.style.display='none';
     }
 
-    /* Preload ONLY v1 on first load */
+    /* Preload ONLY v1 on first visit */
     window.addEventListener('DOMContentLoaded',()=>{
-      document.getElementById('v1').src=sources.v1;
+      const main=document.getElementById('v1');
+      main.src=sources.v1;
+      main.dataset.loaded='yes';
     });
 
-    window.onbeforeunload=()=>"Are you sure you want to leave? Your progress may not be saved.";
-
-    /* Resize handler */
+    /* Resize safeguard */
     window.addEventListener('resize',()=>{
       document.querySelectorAll('iframe').forEach(f=>{
         f.style.width='100%';
@@ -203,17 +205,10 @@
       });
     });
 
-    /* Static Menu auto-return */
-    (()=>{
-      const menu=document.getElementById('staticMenu');
-      document.getElementById('staticMenuClose').addEventListener('click',()=>{
-        menu.style.display='none';
-        setTimeout(()=>{
-          menu.style.top=parseInt(menu.style.top||'15',10)+10+'px';
-          menu.style.display='block';
-        },180000); // 3 min
-      });
-    })();
+    window.onbeforeunload=()=>"Are you sure you want to leave? Your progress may not be saved.";
+
+    /* Static menu auto-return */
+    (()=>{const menu=document.getElementById('staticMenu');document.getElementById('staticMenuClose').addEventListener('click',()=>{menu.style.display='none';setTimeout(()=>{menu.style.top=parseInt(menu.style.top||'15',10)+10+'px';menu.style.display='block';},180000);});})();
   </script>
 </body>
 </html>
