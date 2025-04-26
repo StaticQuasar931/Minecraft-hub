@@ -7,36 +7,28 @@
 
   <!-- Canonical & SEO -->
   <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/minecraft" />
-  <meta name="description" content="Play Minecraft online free with Eaglercraft! Three full builds—including two backups—and one multiplayer-only mirror, all unblocked by StaticQuasar931. No downloads. Works on Chromebooks and at school." />
-  <meta name="keywords" content="Minecraft, Eaglercraft, Minecraft unblocked, Eaglercraft 1.8.8, Eaglercraft 1.5.2, Minecraft backup version, staticquasar931 Minecraft, play Minecraft online, unblocked Minecraft school, HTML5 Minecraft, Eaglercraft school safe, Minecraft Chromebook, Eaglercraft GitHub mirror, multiplayer only Minecraft, block g@me unblocked, sandbox building g@me at school" />
+  <meta name="description" content="Play Minecraft online free with Eaglercraft! Three full builds—including a 1.5.2 backup—and one multiplayer-only edition, all unblocked by StaticQuasar931. No downloads. Chromebook & school-safe." />
+  <meta name="keywords" content="Minecraft, Eaglercraft, Minecraft unblocked, Eaglercraft 1.8.8, Eaglercraft 1.5.2, Minecraft backup game, staticquasar931 Minecraft, play Minecraft online, unblocked Minecraft for school, HTML5 Minecraft, school safe block game, multiplayer only Minecraft, sandbox building game, sandbox building g@me" />
   <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931" />
-  <meta property="og:description" content="Choose the main 1.8.8 build, two backups, or a multiplayer-only mirror. All unblocked and ready to play!" />
+  <meta property="og:description" content="Choose the main 1.8.8 build, a 1.5.2 backup, a second fallback, or a multiplayer-only edition. All unblocked and ready to play!" />
   <meta property="og:url" content="https://sites.google.com/view/staticquasar931/gm3z/minecraft" />
   <meta property="og:type" content="game" />
   <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
   <link rel="icon" href="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
 
-  <!-- Pre-connect / Pre-load full builds -->
+  <!-- Pre-hint ONLY main build -->
   <link rel="preconnect" href="https://eaglercraft.com" />
   <link rel="dns-prefetch" href="https://eaglercraft.com" />
-  <link rel="preconnect" href="https://staticquasar931.github.io" />
-  <link rel="dns-prefetch" href="https://staticquasar931.github.io" />
   <link rel="preload" as="document" href="https://eaglercraft.com/mc/1.8.8/" crossorigin />
-  <link rel="preload" as="document" href="https://staticquasar931.github.io/Eaglercraft1.5.2/" crossorigin />
-  <link rel="preload" as="document" href="https://staticquasar931.github.io/Minecraft/" crossorigin />
 
   <style>
     :root{
-      --accent:#00d4ff;          /* brighter for contrast */
+      --accent:#0ff;          /* original bright cyan */
       --bg:#111;
-      --panel:#181818;           /* darker panel */
+      --panel:#1b1b1b;
     }
-    html,body{
-      margin:0;padding:0;height:100%;width:100%;
-      background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;
-      overflow:hidden;
-    }
-    /* ---------- MENU ---------- */
+    html,body{margin:0;padding:0;height:100%;width:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden;}
+    /* ===== MENU ===== */
     .menu{
       position:absolute;top:20px;left:50%;transform:translateX(-50%);
       display:flex;flex-direction:column;gap:15px;
@@ -45,23 +37,21 @@
     }
     .menu h2{margin:0 0 12px 0;color:var(--accent);}
     .menu button{
-      background:linear-gradient(135deg,#000,#303030);color:var(--accent);
+      background:linear-gradient(135deg,#111,#333);color:var(--accent);
       border:2px solid var(--accent);padding:15px 28px;border-radius:10px;
       font-size:18px;cursor:pointer;transition:.25s ease;
     }
-    .menu button:hover{background:var(--accent);color:#000;transform:scale(1.07);}
-    /* ---------- IFRAME AREA ---------- */
+    .menu button:hover{background:var(--accent);color:#111;transform:scale(1.07);}
+    /* ===== IFRAME AREA ===== */
     #iframeContainer{position:relative;width:100%;height:100%;}
-    iframe{
-      width:100%;height:100%;border:none;display:none;outline:none;
-    }
+    iframe{width:100%;height:100%;border:none;display:none;outline:none;}
     .backBtn{
       position:absolute;top:20px;right:20px;z-index:1002;
       background:var(--accent);color:#000;padding:12px 26px;border-radius:10px;
       font-weight:bold;border:none;cursor:pointer;display:none;
       box-shadow:0 0 10px var(--accent);
     }
-    /* ---------- STATIC MENU ---------- */
+    /* ===== STATIC MENU ===== */
     #staticMenu{
       position:fixed;top:15px;left:15px;background:#222;
       padding:12px 42px 12px 18px;border-radius:14px;font-size:15px;
@@ -70,25 +60,19 @@
       box-shadow:0 0 10px rgba(0,255,255,.35);z-index:9999;
     }
     #staticMenu a{color:var(--accent);text-decoration:none;}
-    #staticMenuClose{
-      position:absolute;top:2px;right:8px;cursor:pointer;
-      font-weight:bold;font-size:18px;line-height:18px;
-    }
+    #staticMenuClose{position:absolute;top:2px;right:8px;cursor:pointer;font-weight:bold;font-size:18px;line-height:18px;}
     @keyframes twinkle{0%{opacity:.6;transform:scale(1);}100%{opacity:1;transform:scale(1.05);}}
-    /* ---------- MISC ---------- */
+    /* ===== MISC ===== */
     .credit{font-size:16px;color:var(--accent);text-shadow:0 0 4px var(--accent);margin-top:10px;}
     .credit a{color:var(--accent);text-decoration:none;font-weight:bold;}
-    .seo-content{
-      position:absolute;width:1px;height:1px;overflow:hidden;
-      clip:rect(1px,1px,1px,1px);white-space:nowrap;
-    }
+    .seo-content{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;}
   </style>
 </head>
 <body>
 
   <!-- ===== VERSION SELECTOR ===== -->
   <div class="menu" id="menu" aria-label="Minecraft version selection">
-    <h2>Choose a Minecraft Version</h2>
+    <h2>Choose&nbsp;a&nbsp;Minecraft&nbsp;Version</h2>
 
     <button onclick="loadGame('v1')" aria-label="Play main Minecraft build">
       Minecraft&nbsp;(Main&nbsp;Version)
@@ -117,26 +101,22 @@
     <iframe id="v1" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map">
-    </iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
 
     <iframe id="v2" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map">
-    </iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
 
     <iframe id="v3" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map">
-    </iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
 
     <iframe id="v4" tabindex="0"
       allowfullscreen allowFullScreen
       sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen; clipboard-write; gamepad; keyboard-map">
-    </iframe>
+      allow="fullscreen; clipboard-write; gamepad; keyboard-map"></iframe>
   </div>
 
   <!-- ===== STATIC MENU ===== -->
@@ -148,92 +128,90 @@
   <!-- ===== HIDDEN SEO BLOCK ===== -->
   <div class="seo-content">
     <h1>Minecraft Hub – StaticQuasar931 Unblocked Versions</h1>
-    <p>Play Minecraft directly in your browser across school networks with four curated Eaglercraft builds: the lightning-fast main 1.8.8 release, a full 1.5.2 backup, a second independent backup, and a multiplayer-only edition for instant server action.  Each version launches in seconds, auto-fits full-screen, and guarantees only one instance runs at a time to keep Chromebooks cool and responsive.</p>
-    <p>Keywords: Minecraft hub unblocked, Eaglercraft 1.8.8, Eaglercraft 1.5.2 backup, browser sandbox block builder, free multiplayer block g@me, school-safe Minecraft clone, StaticQuasar931 games.</p>
+    <p>Play Minecraft in-browser with four curated Eaglercraft builds: the main 1.8.8 release, a full 1.5.2 backup, a second independent backup, and a dedicated multiplayer-only edition.  Every build launches fast, fits full-screen, and only one instance runs at a time—perfect for Chromebooks and school networks.</p>
+    <p>Tags: Minecraft hub unblocked, Eaglercraft online game, Eaglercraft g@me 1.8.8, browser sandbox block builder, multiplayer block g@me, StaticQuasar931 free games.</p>
   </div>
 
-  <!-- ===== LOGIC ===== -->
+  <!-- ===== SCRIPT ===== -->
   <script>
-    /* ---------- SOURCE MAP ---------- */
+    /* ---------- SOURCES ---------- */
     const sources={
-      v1:"https://eaglercraft.com/mc/1.8.8/",            // main
-      v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/", // main backup
-      v3:"https://staticquasar931.github.io/Minecraft/", // second backup
-      v4:"https://staticquasar931.github.io/eaglercrafthtml/"   // multiplayer only
+      v1:"https://eaglercraft.com/mc/1.8.8/",
+      v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/",
+      v3:"https://staticquasar931.github.io/Minecraft/",
+      v4:"https://staticquasar931.github.io/eaglercrafthtml/"
     };
 
-    /* ---------- FRAME HELPERS ---------- */
-    function setFrameSrc(frame,url){
-      frame.src=url;
-      frame.dataset.loaded="true";
-    }
+    let currentId=null; // track active frame
+
     function unloadFrame(frame){
-      if(frame.dataset.loaded){
-        frame.removeAttribute("src");
-        delete frame.dataset.loaded;
-      }
+      frame.removeAttribute('src');
+      frame.style.display='none';
     }
 
-    /* ---------- LOAD GAME ---------- */
     function loadGame(id){
-      document.getElementById("menu").style.display="none";
-      document.getElementById("backButton").style.display="block";
+      if(id===currentId) return;            // already active
 
-      document.querySelectorAll("iframe").forEach(frame=>{
-        if(frame.id===id){
-          if(!frame.dataset.loaded) setFrameSrc(frame,sources[id]);
-          frame.style.display="block";
-          /* give the browser a tick before focusing to guarantee typing */
-          requestAnimationFrame(()=>{frame.focus();try{frame.contentWindow.focus();}catch(e){}});
-        }else{
-          unloadFrame(frame);
-          frame.style.display="none";
-        }
+      document.getElementById('menu').style.display='none';
+      document.getElementById('backButton').style.display='block';
+
+      /* Unload previous */
+      if(currentId){
+        unloadFrame(document.getElementById(currentId));
+      }
+
+      const target=document.getElementById(id);
+
+      // Ensure only ONE request happens – set src AFTER unload completes
+      requestAnimationFrame(()=>{
+        target.src=sources[id];
+        target.style.display='block';
+        /* focus twice for stubborn browsers */
+        target.focus();
+        requestAnimationFrame(()=>{try{target.contentWindow.focus();}catch(e){}});
       });
+
+      currentId=id;
     }
 
-    /* ---------- BACK TO MENU ---------- */
     function goBack(){
-      document.getElementById("menu").style.display="flex";
-      document.getElementById("backButton").style.display="none";
+      if(currentId){
+        unloadFrame(document.getElementById(currentId));
+        currentId=null;
+      }
+      document.getElementById('menu').style.display='flex';
+      document.getElementById('backButton').style.display='none';
 
-      document.querySelectorAll("iframe").forEach(unloadFrame);
-      document.querySelectorAll("iframe").forEach(f=>f.style.display="none");
-
-      /* silently cache main build again */
-      const main=document.getElementById("v1");
-      if(!main.dataset.loaded) setFrameSrc(main,sources.v1);
-      main.style.display="none";
+      /* Pre-cache main build again for instant relaunch */
+      const main=document.getElementById('v1');
+      if(!main.src) main.src=sources.v1;
+      main.style.display='none';
     }
 
-    /* ---------- INIT ---------- */
-    window.addEventListener("DOMContentLoaded",()=>{
-      /* Preload main build for instant first launch */
-      setFrameSrc(document.getElementById("v1"),sources.v1);
+    /* Preload ONLY v1 on first load */
+    window.addEventListener('DOMContentLoaded',()=>{
+      document.getElementById('v1').src=sources.v1;
     });
 
-    /* ---------- RESIZE ---------- */
-    window.addEventListener("resize",()=>{
-      document.querySelectorAll("iframe").forEach(f=>{
-        f.style.width="100%";
-        f.style.height="100%";
-      });
-    });
-
-    /* ---------- UNLOAD WARNING ---------- */
     window.onbeforeunload=()=>"Are you sure you want to leave? Your progress may not be saved.";
 
-    /* ---------- STATIC MENU CLOSE / RETURN ---------- */
+    /* Resize handler */
+    window.addEventListener('resize',()=>{
+      document.querySelectorAll('iframe').forEach(f=>{
+        f.style.width='100%';
+        f.style.height='100%';
+      });
+    });
+
+    /* Static Menu auto-return */
     (()=>{
-      const menu=document.getElementById("staticMenu");
-      const close=document.getElementById("staticMenuClose");
-      close.addEventListener("click",()=>{
-        menu.style.display="none";
-        /* Respawn 10 px lower to avoid back-button overlap */
+      const menu=document.getElementById('staticMenu');
+      document.getElementById('staticMenuClose').addEventListener('click',()=>{
+        menu.style.display='none';
         setTimeout(()=>{
-          menu.style.top=parseInt(menu.style.top||"15",10)+10+"px";
-          menu.style.display="block";
-        },180000);
+          menu.style.top=parseInt(menu.style.top||'15',10)+10+'px';
+          menu.style.display='block';
+        },180000); // 3 min
       });
     })();
   </script>
