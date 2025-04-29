@@ -3,19 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931</title>
+<title>Minecraft Hub – StaticQuasar931</title>
 
-<!-- Canonical + basic SEO -->
+<!-- Canonical + SEO -->
 <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/minecraft">
-<meta name="description" content="Play Minecraft free in your browser with four unblocked Eaglercraft builds, brought together and enhanced by StaticQuasar931.">
+<meta name="description" content="Play unblocked Minecraft in your browser with four Eaglercraft builds enhanced by StaticQuasar931.">
 <meta name="keywords" content="Minecraft game,Minecraft g@me,Eaglercraft game,Eaglercraft g@me,unblocked Minecraft,Chromebook Minecraft">
 
-<!-- OpenGraph -->
-<meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931">
-<meta property="og:description" content="Main 1.8.8, backup 1.5.2, a second fallback and a multiplayer-only edition — no download.">
-<meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg">
-
-<!-- Pre-hint main build only -->
+<!-- main 1.8.8 pre-hint -->
 <link rel="preconnect" href="https://eaglercraft.com">
 <link rel="preload" as="document" href="https://eaglercraft.com/mc/1.8.8/" crossorigin>
 
@@ -23,49 +18,42 @@
 :root{--accent:#0ff;--bg:#111;--panel:#1a1a1a}
 html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden}
 
-/* ===== selector panel ===== */
 .menu{position:absolute;top:20px;left:50%;transform:translateX(-50%);
-      display:flex;flex-direction:column;gap:14px;width:92vw;max-width:420px;
-      background:var(--panel);padding:28px 34px;border-radius:16px;
-      box-shadow:0 0 18px rgba(0,255,255,.25);z-index:1000;text-align:center}
+      display:flex;flex-direction:column;gap:14px;max-width:420px;width:92vw;
+      background:var(--panel);padding:26px 32px;border-radius:16px;
+      box-shadow:0 0 16px rgba(0,255,255,.25);text-align:center;z-index:1000}
 .menu h2{margin:0 0 10px;color:var(--accent)}
 .menu button{background:linear-gradient(135deg,#111,#333);color:var(--accent);
       border:2px solid var(--accent);padding:14px;border-radius:10px;
-      font-size:17px;cursor:pointer;transition:background .25s,transform .25s}
+      font-size:17px;cursor:pointer}
 .menu button:hover{background:var(--accent);color:#111;transform:scale(1.05)}
-.credit{font-size:15px;color:var(--accent);margin-top:6px}
+.credit{font-size:15px;margin-top:6px;color:var(--accent)}
 .credit a{color:var(--accent);text-decoration:none;font-weight:bold}
 
-/* ===== notes ===== */
-.notes{position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
-       font-size:14px;line-height:1.4;color:var(--accent);text-align:center;z-index:1000}
+.notes{position:absolute;left:50%;transform:translateX(-50%);
+       margin-top:12px;font-size:14px;line-height:1.4;color:var(--accent);text-align:center;z-index:1000}
 
-/* ===== static menu overlay ===== */
 #staticMenu{position:fixed;top:15px;left:15px;display:inline-flex;align-items:center;
-            column-gap:6px;background:#222;border-radius:14px;padding:10px 14px;
+            gap:6px;background:#222;padding:10px 14px 10px 12px;border-radius:14px;
             font:15px/1 'Segoe UI',sans-serif;color:var(--accent);font-weight:bold;
-            box-shadow:0 0 8px rgba(0,255,255,.3);max-width:240px;
+            box-shadow:0 0 8px rgba(0,255,255,.3);max-width:260px;
             white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:9999}
 #staticMenu a{color:var(--accent);text-decoration:none}
-#staticMenuClose{cursor:pointer;font-size:18px;line-height:18px;margin-left:4px}
+#staticMenuClose{cursor:pointer;font-size:18px;line-height:18px}
 
-/* ===== position toggle (fixed, never moves) ===== */
 #posToggle{position:fixed;top:65px;left:15px;font-size:14px;background:var(--accent);
            color:#000;border:none;border-radius:8px;padding:6px 10px;cursor:pointer;
            box-shadow:0 0 6px var(--accent);z-index:9999}
 
-/* ===== back button ===== */
 .backBtn{position:absolute;top:20px;right:20px;background:var(--accent);color:#000;
          padding:12px 24px;border:none;border-radius:10px;font-weight:bold;
          box-shadow:0 0 8px var(--accent);cursor:pointer;display:none;z-index:1001}
 
-/* ===== iframe area ===== */
 #iframeContainer{height:100%}
 iframe{width:100%;height:100%;border:none;display:none}
 iframe.active{display:block}
 
-/* ===== hidden SEO ===== */
-.seo-content{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
+.seo{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px)}
 </style>
 </head>
 <body>
@@ -73,32 +61,27 @@ iframe.active{display:block}
 <!-- selector -->
 <div class="menu" id="menu">
   <h2>Choose a Minecraft Version</h2>
-  <button onclick="load('v1')">Minecraft (Main Version)</button>
-  <button onclick="load('v2')">Minecraft Main Backup (1.5.2)</button>
+  <button onclick="load('v1')">Minecraft (Main)</button>
+  <button onclick="load('v2')">Minecraft Backup (1.5.2)</button>
   <button onclick="load('v3')">Minecraft Second Backup</button>
-  <button onclick="load('v4')">Eaglercraft (Multiplayer-only)</button>
+  <button onclick="load('v4')">Eaglercraft (Multiplayer)</button>
   <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
 </div>
 
-<!-- notes -->
 <div class="notes" id="notes">
   <div>Multiplayer/LAN may not work at school yet — I’m working on it.</div>
-  <div>I don’t own Minecraft/Eaglercraft; I just brought these versions together and enhanced the hub.</div>
+  <div>I don’t own Minecraft/Eaglercraft; I just brought these builds together and enhanced the hub.</div>
 </div>
 
-<!-- fixed position toggle -->
+<button id="backBtn" class="backBtn" onclick="back()">Back to Versions</button>
 <button id="posToggle" onclick="cycleCorner()">Move Menu</button>
 
-<!-- back -->
-<button id="backBtn" class="backBtn" onclick="back()">Back to Versions</button>
-
-<!-- static menu overlay -->
 <div id="staticMenu">
   <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank">More Unblocked Games by Static</a>
   <span id="staticMenuClose" aria-label="Close">&times;</span>
 </div>
 
-<!-- iframes -->
+<!-- game frames -->
 <div id="iframeContainer">
   <iframe id="v1" tabindex="0"></iframe>
   <iframe id="v2" tabindex="0"></iframe>
@@ -106,82 +89,81 @@ iframe.active{display:block}
   <iframe id="v4" tabindex="0"></iframe>
 </div>
 
-<!-- hidden SEO -->
-<div class="seo-content">
+<div class="seo">
   <h1>Minecraft Hub – StaticQuasar931</h1>
-  <p>Play unblocked Minecraft in four browser builds: main 1.8.8, backup 1.5.2, second fallback and multiplayer-only.</p>
+  <p>Four unblocked Eaglercraft builds: main 1.8.8, backup 1.5.2, fallback and multiplayer-only.</p>
 </div>
 
 <script>
-/* sources */
-const S={
+const SRC={
   v1:"https://eaglercraft.com/mc/1.8.8/",
   v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/",
   v3:"https://staticquasar931.github.io/Minecraft/",
   v4:"https://staticquasar931.github.io/eaglercrafthtml/"
 };
-/* state */
 let current=null;
-/* dom */
-const sm=document.getElementById('staticMenu');
-const posBtn=document.getElementById('posToggle');
-const menu=document.getElementById('menu');
-const notes=document.getElementById('notes');
-const backBtn=document.getElementById('backBtn');
 
-/* corner persist */
+/* static menu corner */
+const corners=['tl','tr','br','bl'];
 function applyCorner(c){
-  sm.style.top=sm.style.bottom=sm.style.left=sm.style.right='';
-  if(c[0]==='t') sm.style.top='15px'; else sm.style.bottom='15px';
-  if(c[1]==='l') sm.style.left='15px'; else sm.style.right='15px';
+  const m=document.getElementById('staticMenu');
+  m.style.top=m.style.bottom=m.style.left=m.style.right='';
+  if(c[0]==='t') m.style.top='15px'; else m.style.bottom='15px';
+  if(c[1]==='l') m.style.left='15px'; else m.style.right='15px';
 }
 function cycleCorner(){
-  const order=['tl','tr','br','bl'];
-  const c=order[(order.indexOf(localStorage.smCorner||'tl')+1)%4];
-  localStorage.smCorner=c;applyCorner(c);
+  const next=corners[(corners.indexOf(localStorage.smCorner||'tl')+1)%4];
+  localStorage.smCorner=next;applyCorner(next);
 }
 
-/* helpers */
-function focusFix(frame){
-  frame.focus();try{frame.contentWindow.focus()}catch{}
-  /* brute: repeat 8× every 150 ms to defeat canvas re-creation */
-  let n=0;const id=setInterval(()=>{try{frame.contentWindow.focus()}catch{};if(++n>8)clearInterval(id)},150);
-}
-function unload(frame){
-  frame.removeAttribute('src');frame.classList.remove('active');delete frame.dataset.ld;
+/* focus helper */
+function ensureFocus(frame){
+  frame.focus();
+  let tries=0;
+  const id=setInterval(()=>{try{frame.contentWindow.focus()}catch{};if(++tries>10)clearInterval(id)},150);
 }
 
-/* actions */
+/* show frame */
 function load(id){
   if(id===current) return;
-  menu.style.display='none';notes.style.display='none';
-  backBtn.style.display='block';posBtn.style.display='none';
-  if(current) unload(document.getElementById(current));
-  const f=document.getElementById(id);
+  document.getElementById('menu').style.display='none';
+  document.getElementById('notes').style.display='none';
+  document.getElementById('backBtn').style.display='block';
+  document.getElementById('posToggle').style.display='none';
+  if(current) resetFrame(current);
 
+  const f=document.getElementById(id);
   if(f.dataset.ld){
-    f.classList.add('active');focusFix(f);
+    f.classList.add('active');ensureFocus(f);
   }else{
-    f.onload=()=>{focusFix(f);f.onload=null};
-    f.src=S[id];f.dataset.ld=1;f.classList.add('active');
+    f.onload=()=>{ensureFocus(f);f.onload=null};
+    f.src=SRC[id];f.dataset.ld=1;f.classList.add('active');
   }
   current=id;
 }
+
+/* reset */
+function resetFrame(id){
+  const f=document.getElementById(id);
+  f.removeAttribute('src');f.classList.remove('active');delete f.dataset.ld;
+}
+
+/* back */
 function back(){
-  if(current){unload(document.getElementById(current));current=null}
-  menu.style.display='flex';notes.style.display='block';
-  backBtn.style.display='none';posBtn.style.display='block';
-  const m=document.getElementById('v1');
-  if(!m.dataset.ld){m.src=S.v1;m.dataset.ld=1}
+  if(current){resetFrame(current);current=null;}
+  document.getElementById('menu').style.display='flex';
+  document.getElementById('notes').style.display='block';
+  document.getElementById('backBtn').style.display='none';
+  document.getElementById('posToggle').style.display='block';
 }
 
 /* init */
 window.addEventListener('DOMContentLoaded',()=>{
-  document.getElementById('v1').src=S.v1;document.getElementById('v1').dataset.ld=1;
-  applyCorner(localStorage.smCorner||'tl');posBtn.style.display='block';
+  const f=document.getElementById('v1');f.src=SRC.v1;f.dataset.ld=1;
+  applyCorner(localStorage.smCorner||'tl');
 });
-document.getElementById('staticMenuClose').onclick=()=>sm.style.display='none';
-window.onbeforeunload=()=>"Leave the page?";
+document.getElementById('staticMenuClose').onclick=()=>document.getElementById('staticMenu').style.display='none';
+window.onbeforeunload=()=>"Leave the hub?";
 </script>
 </body>
 </html>
