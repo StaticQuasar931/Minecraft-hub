@@ -16,7 +16,7 @@
   <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
   <link rel="icon" href="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg" />
 
-  <!-- Pre-hint ONLY the main build -->
+  <!-- Pre-hint main build only -->
   <link rel="preconnect" href="https://eaglercraft.com" />
   <link rel="dns-prefetch" href="https://eaglercraft.com" />
   <link rel="preload" as="document" href="https://eaglercraft.com/mc/1.8.8/" crossorigin />
@@ -24,28 +24,71 @@
   <style>
     :root{--accent:#0ff;--bg:#111;--panel:#1b1b1b;}
     html,body{margin:0;padding:0;height:100%;width:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden;}
+
     /* selector panel */
-    .menu{position:absolute;top:20px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;gap:15px;background:var(--panel);padding:30px 40px;border-radius:16px;box-shadow:0 0 22px rgba(0,255,255,.25);z-index:1000;text-align:center;}
-    .menu h2{margin:0 0 12px;color:var(--accent);}
-    .menu button{background:linear-gradient(135deg,#111,#333);color:var(--accent);border:2px solid var(--accent);padding:15px 28px;border-radius:10px;font-size:18px;cursor:pointer;transition:.25s;}
-    .menu button:hover{background:var(--accent);color:#111;transform:scale(1.07);}
+    .menu{
+      position:absolute;top:20px;left:50%;transform:translateX(-50%);
+      display:flex;flex-direction:column;gap:14px;background:var(--panel);
+      padding:28px 36px;border-radius:16px;box-shadow:0 0 18px rgba(0,255,255,.25);
+      z-index:1000;text-align:center;max-width:420px;width:90vw;
+    }
+    .menu h2{margin:0 0 10px;color:var(--accent);}
+    .menu button{
+      background:linear-gradient(135deg,#111,#333);color:var(--accent);
+      border:2px solid var(--accent);padding:14px 24px;border-radius:10px;
+      font-size:17px;cursor:pointer;transition:background .25s,transform .25s;
+    }
+    .menu button:hover{background:var(--accent);color:#111;transform:scale(1.06);}
+
     /* notes */
-    .notes{position:absolute;top:calc(100% + 14px);left:50%;transform:translateX(-50%);width:max-content;font-size:14px;color:var(--accent);text-align:center;line-height:1.4;}
-    /* back */
-    .backBtn{position:absolute;top:20px;right:20px;z-index:1002;background:var(--accent);color:#000;padding:12px 26px;border-radius:10px;font-weight:bold;border:none;cursor:pointer;display:none;box-shadow:0 0 10px var(--accent);}
-    /* iframes */
+    .notes{
+      position:absolute;top:calc(100% + 12px);left:50%;transform:translateX(-50%);
+      width:max-content;font-size:14px;color:var(--accent);text-align:center;line-height:1.4;
+    }
+
+    /* back button */
+    .backBtn{
+      position:absolute;top:20px;right:20px;z-index:1002;background:var(--accent);
+      color:#000;padding:12px 24px;border-radius:10px;font-weight:bold;border:none;
+      cursor:pointer;display:none;box-shadow:0 0 8px var(--accent);
+    }
+
+    /* iframe container */
     #iframeContainer{position:relative;width:100%;height:100%;}
-    iframe{width:100%;height:100%;border:none;display:none;outline:none;}
+    iframe{
+      width:100%;height:100%;border:none;display:none;outline:none;
+      opacity:0;transition:opacity .2s ease;
+    }
+    iframe.active{display:block;opacity:1;}
+
     /* static menu overlay */
-    #staticMenu{position:fixed;top:15px;left:15px;border-radius:14px;font-size:15px;color:var(--accent);font-weight:bold;background:#222;box-shadow:0 0 10px rgba(0,255,255,.35);padding:12px 42px 12px 18px;animation:twinkle 2s infinite alternate;z-index:9999;}
+    #staticMenu{
+      position:fixed;top:15px;left:15px;border-radius:14px;font-size:15px;
+      color:var(--accent);font-weight:bold;background:#222;box-shadow:0 0 8px rgba(0,255,255,.35);
+      padding:12px 40px 12px 18px;animation:glow 3s ease-in-out infinite alternate;
+      z-index:9999;
+    }
     #staticMenu a{color:var(--accent);text-decoration:none;}
-    #staticMenuClose{position:absolute;top:2px;right:8px;cursor:pointer;font-weight:bold;font-size:18px;}
+    #staticMenuClose{
+      position:absolute;top:2px;right:8px;cursor:pointer;font-weight:bold;font-size:18px;
+    }
+
     /* fixed position toggle */
-    #posToggle{position:fixed;top:65px;left:15px;font-size:14px;border:none;border-radius:8px;background:var(--accent);color:#000;padding:6px 10px;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999;display:none;}
-    @keyframes twinkle{0%{opacity:.6;transform:scale(1);}100%{opacity:1;transform:scale(1.05);} }
+    #posToggle{
+      position:fixed;top:65px;left:15px;font-size:14px;border:none;border-radius:8px;
+      background:var(--accent);color:#000;padding:6px 10px;cursor:pointer;
+      box-shadow:0 0 6px var(--accent);z-index:9999;display:none;
+    }
+
+    @keyframes glow{
+      from{box-shadow:0 0 4px rgba(0,255,255,.25);}
+      to  {box-shadow:0 0 12px rgba(0,255,255,.5);}
+    }
+
     /* credit */
-    .credit{font-size:16px;color:var(--accent);text-shadow:0 0 4px var(--accent);margin-top:10px;}
+    .credit{font-size:16px;color:var(--accent);text-shadow:0 0 4px var(--accent);margin-top:8px;}
     .credit a{color:var(--accent);text-decoration:none;font-weight:bold;}
+
     /* hidden SEO */
     .seo-content{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap;}
   </style>
@@ -62,13 +105,13 @@
     <div class="credit">Enhanced by&nbsp;<a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
   </div>
 
-  <!-- NOTES (always visible) -->
+  <!-- NOTES -->
   <div class="notes" id="notes">
     <div>Multiplayer/LAN may not work at school yet — I’m working on it.</div>
     <div>I don’t own Minecraft/Eaglercraft; I just brought these versions together and enhanced the hub.</div>
   </div>
 
-  <!-- POSITION TOGGLE (fixed, visible only in menu) -->
+  <!-- POSITION TOGGLE -->
   <button id="posToggle" onclick="cycleCorner()">Move&nbsp;Menu</button>
 
   <!-- BACK BUTTON -->
@@ -76,25 +119,10 @@
 
   <!-- GAME FRAMES -->
   <div id="iframeContainer">
-    <iframe id="v1" tabindex="0"
-      allowfullscreen allowFullScreen
-      sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
-
-    <iframe id="v2" tabindex="0"
-      allowfullscreen allowFullScreen
-      sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
-
-    <iframe id="v3" tabindex="0"
-      allowfullscreen allowFullScreen
-      sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
-
-    <iframe id="v4" tabindex="0"
-      allowfullscreen allowFullScreen
-      sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-modals allow-popups allow-presentation allow-top-navigation-by-user-activation"
-      allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
+    <iframe id="v1" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
+    <iframe id="v2" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
+    <iframe id="v3" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
+    <iframe id="v4" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-forms allow-popups allow-presentation allow-top-navigation-by-user-activation" allow="fullscreen * clipboard-write gamepad keyboard-map keyboard-lock"></iframe>
   </div>
 
   <!-- STATIC MENU -->
@@ -106,7 +134,7 @@
   <!-- HIDDEN SEO -->
   <div class="seo-content">
     <h1>Minecraft Hub – StaticQuasar931 Unblocked Versions</h1>
-    <p>Play Minecraft in your browser with four curated Eaglercraft builds. Only one game or g@me runs at a time—ideal for Chromebooks and school networks.</p>
+    <p>Play Minecraft in your browser with four curated Eaglercraft builds. Only one game or g@me runs at a time — ideal for Chromebooks and school networks.</p>
     <p>Keywords: Minecraft game, Minecraft g@me, Eaglercraft game, Eaglercraft g@me, sandbox block builder, multiplayer block game, multiplayer block g@me, StaticQuasar931 games.</p>
   </div>
 
@@ -126,54 +154,42 @@
     const posBtn=document.getElementById('posToggle');
     const notes=document.getElementById('notes');
 
-    /* STATIC MENU CORNER */
+    /* CORNER FUNCTIONS */
     function applyCorner(c){
       sm.style.top=sm.style.right=sm.style.bottom=sm.style.left='';
-      switch(c){
-        case'tl':sm.style.top='15px';sm.style.left='15px';break;
-        case'tr':sm.style.top='15px';sm.style.right='15px';break;
-        case'br':sm.style.bottom='15px';sm.style.right='15px';break;
-        case'bl':sm.style.bottom='15px';sm.style.left='15px';break;
-      }
+      if(c==='tr'||c==='br') sm.style.right='15px'; else sm.style.left='15px';
+      if(c==='bl'||c==='br') sm.style.bottom='15px'; else sm.style.top='15px';
     }
     function cycleCorner(){
-      const idx=(corners.indexOf(localStorage.getItem('smCorner')||'tl')+1)%4;
-      const c=corners[idx];localStorage.setItem('smCorner',c);applyCorner(c);
+      const next=corners[(corners.indexOf(localStorage.getItem('smCorner')||'tl')+1)%4];
+      localStorage.setItem('smCorner',next);applyCorner(next);
     }
 
     /* FOCUS HELPERS */
     function focusFrame(f){
-      f.focus();                               // step 1
-      try{f.contentWindow.focus();}catch(e){}
-      setTimeout(()=>{                         // step 2
-        try{f.contentWindow.focus();}catch(e){}
-      },250);
+      f.focus(); try{f.contentWindow.focus();}catch(e){}
+      setTimeout(()=>{try{f.contentWindow.focus();}catch(e){}},300);
     }
     function unloadFrame(f){
-      f.onload=null;
-      f.removeAttribute('src');
-      f.style.display='none';
+      f.onload=null; f.removeAttribute('src'); f.classList.remove('active');
       delete f.dataset.loaded;
     }
 
-    /* LOAD GAME */
+    /* LOAD */
     function loadGame(id){
       if(id===currentId) return;
       document.getElementById('menu').style.display='none';
       notes.style.display='none';
       document.getElementById('backButton').style.display='block';
       posBtn.style.display='none';
-
       if(currentId) unloadFrame(document.getElementById(currentId));
 
-      const target=document.getElementById(id);
+      const frame=document.getElementById(id);
       requestAnimationFrame(()=>{
-        if(target.dataset.loaded){target.style.display='block';focusFrame(target);}
+        if(frame.dataset.loaded){frame.classList.add('active');focusFrame(frame);}
         else{
-          target.onload=()=>{focusFrame(target);target.onload=null;};
-          target.src=sources[id];
-          target.dataset.loaded='yes';
-          target.style.display='block';
+          frame.onload=()=>{focusFrame(frame);frame.onload=null;};
+          frame.src=sources[id];frame.dataset.loaded='yes';frame.classList.add('active');
         }
       });
       currentId=id;
@@ -189,7 +205,7 @@
 
       const main=document.getElementById('v1');
       if(!main.dataset.loaded){main.src=sources.v1;main.dataset.loaded='yes';}
-      main.style.display='none';
+      main.classList.remove('active');
     }
 
     /* INIT */
@@ -202,8 +218,8 @@
 
     /* LISTENERS */
     window.addEventListener('resize',()=>applyCorner(localStorage.getItem('smCorner')||'tl'));
-    window.onbeforeunload=()=>"Are you sure you want to leave? Your progress may not be saved.";
     document.getElementById('staticMenuClose').addEventListener('click',()=>sm.style.display='none');
+    window.onbeforeunload=()=>"Are you sure you want to leave? Your progress may not be saved.";
   </script>
 </body>
 </html>
