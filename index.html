@@ -7,10 +7,10 @@
 
 <!-- Canonical + SEO -->
 <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/minecraft">
-<meta name="description" content="Play unblocked Minecraft in your browser with four Eaglercraft builds (main 1.8.8, 1.5.2 backup, second fallback, multiplayer-only) gathered and enhanced by StaticQuasar931.">
-<meta name="keywords" content="Minecraft game,Minecraft g@me,Eaglercraft game,Eaglercraft g@me,unblocked Minecraft,Chromebook Minecraft">
+<meta name="description" content="Play unblocked Minecraft in your browser with five Eaglercraft builds (main 1.8.8, NEW 1.12.2, 1.5.2 backup, second fallback, multiplayer-only) gathered and enhanced by StaticQuasar931.">
+<meta name="keywords" content="Minecraft game,Minecraft g@me,Eaglercraft game,Eaglercraft g@me,unblocked Minecraft,Chromebook Minecraft, Minecraft 1.12.2">
 <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931">
-<meta property="og:description" content="Choose the main 1.8.8 build, two backups or a multiplayer-only edition. No downloads—just play!">
+<meta property="og:description" content="Choose the main 1.8.8 build, new 1.12.2 version, two backups or a multiplayer-only edition. No downloads—just play!">
 <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg">
 
 <!-- Pre-hint ONLY the main build -->
@@ -22,7 +22,7 @@
 html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden}
 
 /* === selector === */
-.menu{position:absolute;top:20px;left:50%;transform:translateX(-50%);
+.menu{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
       display:flex;flex-direction:column;gap:14px;max-width:420px;width:92vw;
       background:var(--panel);padding:28px 34px;border-radius:16px;
       box-shadow:0 0 16px rgba(0,255,255,.25);text-align:center;z-index:1000}
@@ -42,7 +42,7 @@ html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Sego
 #staticMenu a{color:var(--accent);text-decoration:none}
 #staticMenuClose{cursor:pointer;font-size:18px;line-height:18px;margin-left:4px}
 
-/* === move-menu toggle (always below TL corner) === */
+/* === move-menu toggle === */
 #posToggle{position:fixed;font-size:14px;background:var(--accent);color:#000;border:none;
            border-radius:8px;padding:6px 10px;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999}
 
@@ -66,6 +66,7 @@ iframe.active{display:block}
 <div class="menu" id="menu">
   <h2>Choose a Minecraft Version</h2>
   <button onclick="run('v1')">Minecraft (Main)</button>
+  <button onclick="run('v5')">Minecraft (1.12.2) (NEW)</button>
   <button onclick="run('v2')">Minecraft Backup (1.5.2)</button>
   <button onclick="run('v3')">Minecraft Second Backup</button>
   <button onclick="run('v4')">Eaglercraft (Multiplayer)</button>
@@ -91,6 +92,7 @@ iframe.active{display:block}
 <!-- frames -->
 <div id="iframeContainer">
   <iframe id="v1" tabindex="0"></iframe>
+  <iframe id="v5" tabindex="0"></iframe>
   <iframe id="v2" tabindex="0"></iframe>
   <iframe id="v3" tabindex="0"></iframe>
   <iframe id="v4" tabindex="0"></iframe>
@@ -100,11 +102,13 @@ iframe.active{display:block}
 
 <script>
 /* build URLs */
-const SRC={v1:"https://eaglercraft.com/mc/1.8.8/",
-           v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/",
-           v3:"https://staticquasar931.github.io/Minecraft/",
-           v4:"https://staticquasar931.github.io/eaglercrafthtml/"};
-/* active frame id */
+const SRC={
+  v1:"https://eaglercraft.com/mc/1.8.8/",
+  v5:"https://eaglercraft.com/mc/1.12.2/",
+  v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/",
+  v3:"https://staticquasar931.github.io/Minecraft/",
+  v4:"https://staticquasar931.github.io/eaglercrafthtml/"
+};
 let cur=null;
 
 /* corner logic */
@@ -123,13 +127,13 @@ function cycleCorner(){
   localStorage.corner=next;place(next);
 }
 
-/* brute focus */
+/* focus loop */
 function grab(f){
   f.focus();let i=0;
   const id=setInterval(()=>{try{f.contentWindow.focus()}catch{};if(++i>12)clearInterval(id)},150);
 }
 
-/* open & close */
+/* game switching */
 function run(id){
   if(id===cur) return;
   document.getElementById('menu').style.display='none';
