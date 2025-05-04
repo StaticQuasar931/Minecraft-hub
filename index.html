@@ -7,8 +7,8 @@
 
 <!-- Canonical & SEO -->
 <link rel="canonical" href="https://sites.google.com/view/staticquasar931/gm3z/minecraft"/>
-<meta name="description" content="Play unblocked Minecraft (1.8.8, 1.12.2, mobile, backups) in your browser. Favorite & most‑played saved. Hub by StaticQuasar931."/>
-<meta name="keywords" content="Minecraft game,Eaglercraft 1.12.2,Eaglercraft 1.8.8,unblocked Minecraft,Chromebook Minecraft"/>
+<meta name="description" content="Play unblocked Minecraft (1.8.8 main, 1.12.2 NEW, mobile and backup versions) right in your browser. Favorite & most‑played are saved. Typing fix included."/>
+<meta name="keywords" content="Minecraft 1.8.8,Minecraft 1.12.2,Minecraft mobile,unblocked Minecraft,Eaglercraft,Chromebook games,StaticQuasar931"/>
 <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931"/>
 <meta property="og:description" content="Choose 1.8.8, 1.12.2, mobile or multiplayer builds. Favorite & most‑played remembered."/>
 <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1742418896/minecrafold_vq0xrr.jpg"/>
@@ -19,12 +19,9 @@
 <style>
 :root{--accent:#0ff;--bg:#111;--panel:#1b1b1b}
 html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden}
-
-/* selector */
 .menu{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      display:flex;flex-direction:column;gap:16px;max-width:420px;width:92vw;
-      background:var(--panel);padding:34px 38px;border-radius:16px;
-      box-shadow:0 0 18px rgba(0,255,255,.25);text-align:center;z-index:1000}
+      display:flex;flex-direction:column;gap:16px;max-width:440px;width:92vw;
+      background:var(--panel);padding:34px 38px;border-radius:16px;box-shadow:0 0 18px rgba(0,255,255,.25);text-align:center;z-index:1000}
 .menu h2{margin:0 0 12px;color:var(--accent)}
 .menu button{background:linear-gradient(135deg,#111,#333);color:var(--accent);
       border:2px solid var(--accent);padding:16px;border-radius:10px;font-size:18px;cursor:pointer}
@@ -34,40 +31,20 @@ html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Sego
 .noteBlock{margin-top:12px;font-size:17px;line-height:1.45;color:var(--accent)}
 .infoRow{margin-top:18px;display:flex;justify-content:center;gap:24px}
 .infoRow a{color:var(--accent);text-decoration:none;font-weight:bold}
-
-/* static menu */
-#staticMenu{position:fixed;display:inline-flex;align-items:center;gap:6px;
-            background:#222;padding:12px 16px;border-radius:14px;font:16px/1 'Segoe UI',sans-serif;
-            color:var(--accent);font-weight:bold;box-shadow:0 0 8px rgba(0,255,255,.3);
-            max-width:260px;white-space:nowrap;text-overflow:ellipsis;z-index:9999}
+#staticMenu{position:fixed;display:inline-flex;align-items:center;gap:6px;background:#222;padding:12px 16px;border-radius:14px;font:16px/1 'Segoe UI',sans-serif;color:var(--accent);font-weight:bold;box-shadow:0 0 8px rgba(0,255,255,.3);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:9999}
 #staticMenu a{color:var(--accent);text-decoration:none}
 #staticMenuClose{cursor:pointer;font-size:18px;margin-left:4px}
-
-/* move button */
-#posToggle{position:fixed;font-size:15px;background:var(--accent);color:#000;border:none;
-           border-radius:8px;padding:7px 12px;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999}
-
-/* back */
-.backBtn{position:absolute;top:20px;right:20px;display:none;background:var(--accent);color:#000;
-         padding:14px 26px;border:none;border-radius:10px;font-weight:bold;box-shadow:0 0 8px var(--accent);
-         cursor:pointer;z-index:1001}
-
-/* frames */
+#posToggle{position:fixed;font-size:15px;background:var(--accent);color:#000;border:none;border-radius:8px;padding:7px 12px;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999}
+.backBtn{position:absolute;top:20px;right:20px;display:none;background:var(--accent);color:#000;padding:14px 26px;border:none;border-radius:10px;font-weight:bold;box-shadow:0 0 8px var(--accent);cursor:pointer;z-index:1001}
 #iframeContainer{height:100%}
 iframe{width:100%;height:100%;border:none;display:none}
 iframe.active{display:block}
-
-/* notice banner */
 #gameNote{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
-          background:#222;padding:12px 22px;border-radius:10px;color:var(--accent);
-          font-size:16px;box-shadow:0 0 8px rgba(0,255,255,.3);opacity:0;pointer-events:none;z-index:1001;
-          transition:opacity 1s}
+          background:#222;padding:12px 24px;border-radius:12px;color:var(--accent);
+          font-size:16px;box-shadow:0 0 8px rgba(0,255,255,.3);opacity:0;pointer-events:none;z-index:1001;transition:opacity 1s}
 #gameNote.show{opacity:1}
-
-/* help overlay */
 #helpBtn{position:fixed;top:22px;left:50%;transform:translateX(-50%);
-        background:var(--accent);color:#000;border:none;border-radius:8px;padding:8px 20px;
-        font-weight:bold;cursor:pointer;z-index:1002}
+        background:var(--accent);color:#000;border:none;border-radius:8px;padding:8px 20px;font-weight:bold;cursor:pointer;z-index:1002}
 #helpOverlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;z-index:1003}
 #helpContent{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
              background:#222;padding:30px 38px;border-radius:14px;color:var(--accent);
@@ -81,12 +58,12 @@ iframe.active{display:block}
 <div class="menu" id="menu">
   <h2>Choose a Minecraft Version</h2>
 
-  <button aria-label="Minecraft Main 1.8.8" id="btn-v1" data-id="v1" data-label="Minecraft (Main – 1.8.8)" onclick="run('v1')">Minecraft (Main – 1.8.8)</button>
-  <button aria-label="Minecraft 1.12.2"       id="btn-v5" data-id="v5" data-label="Minecraft (1.12.2) (NEW)" onclick="run('v5')">Minecraft (1.12.2) (NEW)</button>
-  <button aria-label="Minecraft Mobile"       id="btn-vM" data-id="vM" data-label="Minecraft (Mobile)"        onclick="run('vM')">Minecraft (Mobile)</button>
-  <button aria-label="Minecraft Backup 1.5.2" id="btn-v2" data-id="v2" data-label="Minecraft Backup (1.5.2)"  onclick="run('v2')">Minecraft Backup (1.5.2)</button>
-  <button aria-label="Minecraft Second Backup"id="btn-v3" data-id="v3" data-label="Minecraft Second Backup"   onclick="run('v3')">Minecraft Second Backup</button>
-  <button aria-label="Eaglercraft Multiplayer"id="btn-v4" data-id="v4" data-label="Eaglercraft (Multiplayer)" onclick="run('v4')">Eaglercraft (Multiplayer)</button>
+  <button aria-label="Minecraft (Main – 1.8.8)" id="btn-v1" data-id="v1" data-label="Minecraft (Main – 1.8.8)" onclick="run('v1')">Minecraft (Main – 1.8.8)</button>
+  <button aria-label="Minecraft (1.12.2) (NEW)" id="btn-v5" data-id="v5" data-label="Minecraft (1.12.2) (NEW)" onclick="run('v5')">Minecraft (1.12.2) (NEW)</button>
+  <button aria-label="Minecraft (Mobile)"       id="btn-vM" data-id="vM" data-label="Minecraft (Mobile)"        onclick="run('vM')">Minecraft (Mobile)</button>
+  <button aria-label="Minecraft Backup (1.5.2)" id="btn-v2" data-id="v2" data-label="Minecraft Backup (1.5.2)"  onclick="run('v2')">Minecraft Backup (1.5.2)</button>
+  <button aria-label="Minecraft Second Backup"  id="btn-v3" data-id="v3" data-label="Minecraft Second Backup"   onclick="run('v3')">Minecraft Second Backup</button>
+  <button aria-label="Eaglercraft (Multiplayer)"id="btn-v4" data-id="v4" data-label="Eaglercraft (Multiplayer)" onclick="run('v4')">Eaglercraft (Multiplayer)</button>
 
   <div class="infoRow">
     <a href="https://discord.gg/DP2hM7RRhR" target="_blank">Join Discord</a>
@@ -109,7 +86,6 @@ iframe.active{display:block}
     <p>⭐ Right‑click any button to set/unset your Favorite (pre‑loads & adds star).</p>
     <p>📈 Most‑played version is tracked locally.</p>
     <p>⌨️ If typing stops working, refresh the page.</p>
-    <p>🌐 Multiplayer may be blocked on some networks.</p>
     <p><strong>Favorite:</strong> <span id="favDisplay">N/A</span></p>
     <p><strong>Most played:</strong> <span id="mostDisplay">N/A</span></p>
     <p><a href="#" onclick="clearData(event)">Clear saved data</a></p>
@@ -126,12 +102,13 @@ iframe.active{display:block}
 <button id="backBtn" class="backBtn" onclick="goBack()">Back to Versions</button>
 
 <div id="iframeContainer">
-  <iframe id="v1" tabindex="0"></iframe>
-  <iframe id="v5" tabindex="0"></iframe>
-  <iframe id="vM" tabindex="0"></iframe>
-  <iframe id="v2" tabindex="0"></iframe>
-  <iframe id="v3" tabindex="0"></iframe>
-  <iframe id="v4" tabindex="0"></iframe>
+  <!-- Each iframe has sandbox + allowfullscreen -->
+  <iframe id="v1" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms allow-modals allow-presentation"></iframe>
+  <iframe id="v5" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms allow-modals allow-presentation"></iframe>
+  <iframe id="vM" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms allow-modals allow-presentation"></iframe>
+  <iframe id="v2" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms allow-modals allow-presentation"></iframe>
+  <iframe id="v3" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms allow-modals allow-presentation"></iframe>
+  <iframe id="v4" tabindex="0" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-forms allow-modals allow-presentation"></iframe>
 </div>
 
 <script>
@@ -145,14 +122,16 @@ const SRC={
 };
 const labelMap={
   v1:"Minecraft (Main – 1.8.8)",
-  v5:"Minecraft (1.12.2)",
+  v5:"Minecraft (1.12.2) (NEW)",
   vM:"Minecraft (Mobile)",
   v2:"Minecraft Backup (1.5.2)",
   v3:"Minecraft Second Backup",
   v4:"Eaglercraft (Multiplayer)"
 };
+
 let cur=null,fadeTimer=0;
 
+/* corner placement */
 function place(corner){
   const m=document.getElementById('staticMenu'),b=document.getElementById('posToggle');
   ['top','bottom','left','right'].forEach(p=>{m.style[p]='';b.style[p]='';});
@@ -164,17 +143,24 @@ function cycleCorner(){
   const next=order[(order.indexOf(localStorage.corner||'tl')+1)%4];
   localStorage.corner=next;place(next);
 }
+
+/* focus helper */
 function grabFocus(f){
   f.focus();
-  let retries=0;const id=setInterval(()=>{try{f.contentWindow.focus()}catch{};if(++retries>12)clearInterval(id)},150);
+  let tries=0;const id=setInterval(()=>{try{f.contentWindow.focus()}catch{};if(++tries>12)clearInterval(id)},150);
 }
 
+/* star & aria updates */
 function updateButtons(){
   const fav=localStorage.favorite||"";
   document.querySelectorAll('.menu button').forEach(btn=>{
-    btn.textContent=(fav===btn.dataset.id?"★ ":"")+btn.dataset.label;
+    const id=btn.dataset.id, label=btn.dataset.label;
+    btn.textContent=(fav===id?"★ ":"")+label;
+    btn.setAttribute('aria-label',(fav===id?"Favorite – ":"")+label);
   });
 }
+
+/* play history */
 function recordPlay(id){
   const plays=JSON.parse(localStorage.plays||"{}");plays[id]=(plays[id]||0)+1;localStorage.plays=JSON.stringify(plays);
 }
@@ -183,13 +169,16 @@ function mostPlayed(){
   return Object.keys(plays).reduce((a,b)=>plays[a]>=plays[b]?a:b,"");
 }
 
+/* notice banner handling */
 function showNotice(){
   clearTimeout(fadeTimer);
   const note=document.getElementById('gameNote');
   note.classList.add('show');
-  fadeTimer=setTimeout(()=>note.classList.remove('show'),10000); // fade after 10 s
+  fadeTimer=setTimeout(()=>note.classList.remove('show'),10000);
 }
+function hideNotice(){document.getElementById('gameNote').classList.remove('show');}
 
+/* run game */
 function run(id){
   if(id===cur)return;
   localStorage.lastPlayed=id;recordPlay(id);
@@ -198,51 +187,62 @@ function run(id){
   document.getElementById('backBtn').style.display='block';
   document.getElementById('posToggle').style.display='none';
   showNotice();
-  if(cur){const old=document.getElementById(cur);old.removeAttribute('src');old.classList.remove('active');}
-  const f=document.getElementById(id);
-  if(f.dataset.ld){f.classList.add('active');grabFocus(f);}
-  else{f.onload=()=>{grabFocus(f);f.onload=null};f.src=SRC[id];f.dataset.ld=1;f.classList.add('active');}
+
+  if(cur){
+    const old=document.getElementById(cur);
+    old.removeAttribute('src');old.classList.remove('active');
+  }
+  const frame=document.getElementById(id);
+  if(frame.dataset.ld){frame.classList.add('active');grabFocus(frame);}
+  else{frame.onload=()=>{grabFocus(frame);frame.onload=null};frame.src=SRC[id];frame.dataset.ld=1;frame.classList.add('active');}
   cur=id;
-  /* dismiss note on second user click */
+
+  /* dismiss banner after second pointer event (outer doc) */
   let clicks=0;
-  const listener=()=>{if(++clicks>=2){document.getElementById('gameNote').classList.remove('show');f.contentWindow.removeEventListener('pointerdown',listener);}};
-  try{f.contentWindow.addEventListener('pointerdown',listener);}catch{}
+  const pageListener=()=>{if(++clicks>=2){hideNotice();document.removeEventListener('pointerdown',pageListener,true);}};
+  document.addEventListener('pointerdown',pageListener,true);
 }
 
+/* back to lobby */
 function goBack(){
-  if(cur){const f=document.getElementById(cur);f.removeAttribute('src');f.classList.remove('active');cur=null;}
+  if(cur){
+    const f=document.getElementById(cur);f.removeAttribute('src');f.classList.remove('active');cur=null;
+  }
   document.getElementById('menu').style.display='flex';
   document.getElementById('helpBtn').style.display='block';
   document.getElementById('backBtn').style.display='none';
   document.getElementById('posToggle').style.display='block';
-  document.getElementById('gameNote').classList.remove('show');
-  updateButtons();
+  hideNotice();updateButtons();
 }
 
+/* help overlay */
 function toggleHelp(){
   const overlay=document.getElementById('helpOverlay');
   if(overlay.style.display==='block'){overlay.style.display='none';return;}
-  const fav=localStorage.favorite?labelMap[localStorage.favorite]:"N/A";
-  const mp=mostPlayed();const most=mp?labelMap[mp]:"N/A";
-  document.getElementById('favDisplay').textContent=fav;
-  document.getElementById('mostDisplay').textContent=most;
+  const favLabel=localStorage.favorite?labelMap[localStorage.favorite]:"N/A";
+  const mp=mostPlayed();const mostLabel=mp?labelMap[mp]:"N/A";
+  document.getElementById('favDisplay').textContent=favLabel;
+  document.getElementById('mostDisplay').textContent=mostLabel;
   overlay.style.display='block';
 }
+
+/* clear data */
 function clearData(e){
   e.preventDefault();
   if(confirm("Clear all saved data?") && confirm("Are you absolutely sure?")){
     ['favorite','plays','corner'].forEach(k=>localStorage.removeItem(k));
-    alert("Saved data cleared. Reloading...");location.reload();
+    setTimeout(()=>location.reload(),50);
+    alert("Saved data cleared. Reloading...");
   }
 }
 
-/* INIT */
+/* init */
 window.addEventListener('DOMContentLoaded',()=>{
   const preload=localStorage.favorite||mostPlayed()||'v1';
-  const iframe=document.getElementById(preload);iframe.src=SRC[preload];iframe.dataset.ld=1;
-  place(localStorage.corner||'tl');
-  updateButtons();
-  /* right‑click to toggle favorite */
+  const preFrame=document.getElementById(preload);
+  preFrame.src=SRC[preload];preFrame.dataset.ld=1;
+  place(localStorage.corner||'tl');updateButtons();
+
   document.querySelectorAll('.menu button').forEach(btn=>{
     btn.addEventListener('contextmenu',e=>{
       e.preventDefault();
@@ -253,7 +253,9 @@ window.addEventListener('DOMContentLoaded',()=>{
   });
 });
 document.getElementById('staticMenuClose').onclick=()=>document.getElementById('staticMenu').style.display='none';
-document.addEventListener('keydown',e=>{if(e.key==='Escape'&&document.getElementById('helpOverlay').style.display==='block')toggleHelp();});
+document.addEventListener('keydown',e=>{
+  if(e.key==='Escape' && document.getElementById('helpOverlay').style.display==='block')toggleHelp();
+});
 </script>
 </body>
 </html>
