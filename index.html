@@ -5,10 +5,9 @@
 <meta name="viewport" content="width=device-width,initial-scale=1"/>
 <title>Minecraft Hub – StaticQuasar931</title>
 
-<!-- Canonical, SEO & Social -->
+<!-- Canonical / SEO -->
 <link rel="canonical" href="https://staticquasar931.github.io/Minecraft-hub/"/>
-<meta name="robots" content="index,follow"/>
-<meta name="description" content="Play unblocked Minecraft (1.8.8, 1.12.2, mobile and backup versions) right in your browser. Favorite, most‑played and preload versions are saved. Typing fix included."/>
+<meta name="description" content="Play unblocked Minecraft right in your browser (1.8.8, 1.12.2, mobile & backups). Favorites, most‑played stats and quick‑load built‑in."/>
 <meta name="keywords" content="Minecraft 1.8.8,Minecraft 1.12.2,Minecraft mobile,unblocked Minecraft,Eaglercraft,Chromebook games,StaticQuasar931,Minecraft GitHub"/>
 <meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931"/>
 <meta property="og:url" content="https://staticquasar931.github.io/Minecraft-hub/"/>
@@ -22,61 +21,71 @@
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-51RKDMT6JK"></script>
 <script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-51RKDMT6JK');
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-51RKDMT6JK');
 </script>
 
 <link rel="preconnect" href="https://eaglercraft.com"/>
 <link rel="preload" as="document" href="https://eaglercraft.com/mc/1.8.8/" crossorigin/>
 
 <style>
-:root{--accent:#0ff;--bg:#111;--panel:#1b1b1b;--noteBig:20px;--noteNormal:16px}
+:root{--accent:#0ff;--bg:#111;--panel:#1b1b1b;--noteSize:15px}
 html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden}
+
+/* ---------- Menu ---------- */
 .menu{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      display:flex;flex-direction:column;gap:16px;max-width:440px;width:92vw;background:var(--panel);
-      padding:34px 38px;border-radius:16px;box-shadow:0 0 18px rgba(0,255,255,.25);text-align:center;z-index:1000}
+      display:flex;flex-direction:column;gap:16px;max-width:440px;width:92vw;
+      background:var(--panel);padding:34px 38px;border-radius:16px;
+      box-shadow:0 0 18px rgba(0,255,255,.25);text-align:center;z-index:1000}
 .menu h2{margin:0 0 12px;color:var(--accent)}
-.menu button{background:linear-gradient(135deg,#111,#333);color:var(--accent);border:2px solid var(--accent);
-      padding:16px;border-radius:10px;font-size:18px;cursor:pointer}
+.menu button{background:linear-gradient(135deg,#111,#333);color:var(--accent);
+      border:2px solid var(--accent);padding:16px;border-radius:10px;font-size:18px;cursor:pointer}
 .menu button:hover{background:var(--accent);color:#111;transform:scale(1.05)}
 .menu button.activeBtn{box-shadow:0 0 8px var(--accent)}
 .credit{font-size:16px;color:var(--accent);margin-top:10px}
 .credit a{color:var(--accent);text-decoration:none;font-weight:bold}
 .noteBlock{margin-top:12px;font-size:17px;line-height:1.45;color:var(--accent)}
-.noteBlock strong{color:#ff9;display:inline-block;padding-top:6px}
+.noteBlock strong{color:#ff9}
 .infoRow{margin-top:18px;display:flex;justify-content:center;gap:24px}
 .infoRow a{color:var(--accent);text-decoration:none;font-weight:bold}
 
-#staticMenu{position:fixed;display:inline-flex;align-items:center;gap:6px;background:#222;padding:12px 16px;border-radius:14px;
-           font:16px/1 'Segoe UI',sans-serif;color:var(--accent);font-weight:bold;box-shadow:0 0 8px rgba(0,255,255,.3);
+/* ---------- Floating widgets ---------- */
+#staticMenu{position:fixed;display:flex;align-items:center;gap:6px;background:#222;
+           padding:12px 16px;border-radius:14px;font:16px/1 'Segoe UI',sans-serif;
+           color:var(--accent);font-weight:bold;box-shadow:0 0 8px rgba(0,255,255,.3);
            max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:9999}
 #staticMenu a{color:var(--accent);text-decoration:none}
-#staticMenuClose{cursor:pointer;font-size:18px;margin-left:4px;line-height:1}
+#staticMenuClose{cursor:pointer;font-size:18px;line-height:1}
+#posToggle,#helpBtn{position:fixed;font-size:15px;background:var(--accent);color:#000;border:none;
+          border-radius:8px;padding:7px 14px;font-weight:bold;cursor:pointer;
+          box-shadow:0 0 6px var(--accent);z-index:9999}
+.backBtn{position:absolute;top:20px;right:20px;display:none;background:var(--accent);
+        color:#000;padding:14px 26px;border:none;border-radius:10px;font-weight:bold;
+        box-shadow:0 0 8px var(--accent);cursor:pointer;z-index:1001}
 
-#posToggle,#helpBtn{position:fixed;font-size:15px;background:var(--accent);color:#000;border:none;border-radius:8px;
-          padding:7px 14px;font-weight:bold;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999}
-#helpBtn{padding:7px 18px}
-
-.backBtn{position:absolute;top:20px;right:20px;display:none;background:var(--accent);color:#000;padding:14px 26px;
-        border:none;border-radius:10px;font-weight:bold;box-shadow:0 0 8px var(--accent);cursor:pointer;z-index:1001}
-
+/* ---------- Game area ---------- */
 #iframeContainer{height:100%}
 iframe{width:100%;height:100%;border:none;display:none}
 iframe.active{display:block}
 
-#gameNote{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#222;padding:12px 24px;border-radius:12px;
-         color:var(--accent);font-size:var(--noteBig);box-shadow:0 0 8px rgba(0,255,255,.3);opacity:0;pointer-events:none;
-         z-index:1001;transition:opacity .6s}
+/* ---------- Note ---------- */
+#gameNote{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
+         background:#222;padding:10px 22px;border-radius:12px;color:var(--accent);
+         font-size:var(--noteSize);box-shadow:0 0 8px rgba(0,255,255,.3);
+         opacity:0;pointer-events:none;z-index:1001;transition:opacity .4s}
 #gameNote.show{opacity:1}
 
+/* ---------- Help ---------- */
 #helpOverlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;z-index:1003}
-#helpContent{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:#222;padding:30px 38px;border-radius:14px;
-             color:var(--accent);max-width:440px;width:92vw}
-#helpContent h3{margin-top:0;color:#0ff}
+#helpContent{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
+             background:#222;padding:30px 38px;border-radius:14px;color:var(--accent);
+             max-width:440px;width:92vw}
+#helpContent h3{margin:0 0 8px;color:#0ff}
 #helpContent a{color:#0ff}
 
+/* Hidden SEO links */
 .hiddenSEO{position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden}
 </style>
 </head>
@@ -85,12 +94,12 @@ iframe.active{display:block}
 <div class="menu" id="menu" role="dialog" aria-modal="true">
   <h2>Choose a Minecraft Version</h2>
 
-  <button id="btn-v1" data-id="v1" data-label="Minecraft (Main – 1.8.8)" aria-pressed="false" title="Play Minecraft 1.8.8">Minecraft (Main – 1.8.8)</button>
-  <button id="btn-v5" data-id="v5" data-label="Minecraft (1.12.2) (NEW)" aria-pressed="false" title="Play Minecraft 1.12.2">Minecraft (1.12.2) (NEW)</button>
-  <button id="btn-vM" data-id="vM" data-label="Minecraft (Mobile)" aria-pressed="false" title="Play Minecraft Mobile">Minecraft (Mobile)</button>
-  <button id="btn-v2" data-id="v2" data-label="Minecraft Backup (1.5.2)" aria-pressed="false" title="Play Minecraft 1.5.2 backup">Minecraft Backup (1.5.2)</button>
-  <button id="btn-v3" data-id="v3" data-label="Minecraft Second Backup" aria-pressed="false" title="Play second backup">Minecraft Second Backup</button>
-  <button id="btn-v4" data-id="v4" data-label="Eaglercraft (Multiplayer)" aria-pressed="false" title="Play multiplayer">Eaglercraft (Multiplayer)</button>
+  <button id="btn-v1" data-id="v1" data-label="Minecraft (Main – 1.8.8)" aria-pressed="false">Minecraft (Main – 1.8.8)</button>
+  <button id="btn-v5" data-id="v5" data-label="Minecraft (1.12.2) (NEW)" aria-pressed="false">Minecraft (1.12.2) (NEW)</button>
+  <button id="btn-vM" data-id="vM" data-label="Minecraft (Mobile)" aria-pressed="false">Minecraft (Mobile)</button>
+  <button id="btn-v2" data-id="v2" data-label="Minecraft Backup (1.5.2)" aria-pressed="false">Minecraft Backup (1.5.2)</button>
+  <button id="btn-v3" data-id="v3" data-label="Minecraft Second Backup" aria-pressed="false">Minecraft Second Backup</button>
+  <button id="btn-v4" data-id="v4" data-label="Eaglercraft (Multiplayer)" aria-pressed="false">Eaglercraft (Multiplayer)</button>
 
   <div class="infoRow">
     <a href="https://discord.gg/DP2hM7RRhR" target="_blank">Join Discord</a>
@@ -98,10 +107,9 @@ iframe.active{display:block}
   </div>
 
   <div class="noteBlock">
-    <strong>★ Right‑click a button to set it as favorite.</strong><br>
-    ➕ A “+” means that version is preloaded for faster start.<br>
+    <strong>★ Right‑click a button to set as favorite.</strong><br>
     Multiplayer/LAN may not work at school — I’m working on it.<br>
-    ⚠️ Typing may break after sharing a world; refresh if needed.
+    ⚠️ Typing may break after sharing a world; refresh if needed.
   </div>
 
   <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
@@ -113,13 +121,11 @@ iframe.active{display:block}
 <div id="helpOverlay" role="dialog" aria-modal="true" onclick="toggleHelp()">
   <div id="helpContent" onclick="event.stopPropagation()">
     <h3>Help / Info</h3>
-    <p>⭐ Right‑click any button to set/unset your Favorite (pre‑loads & adds star).</p>
-    <p>➕ The version with a “+” is preloaded for quicker start.</p>
-    <p>📈 Most‑played version is tracked locally.</p>
-    <p>⌨️ If typing stops working, refresh the page.</p>
+    <p>⭐ Right‑click any version to set/unset your Favorite (adds star).</p>
+    <p>📈 Most‑played version is tracked locally.</p>
+    <p>⌨️ If typing stops working, refresh the page.</p>
     <p><strong>Favorite:</strong> <span id="favDisplay">N/A</span></p>
     <p><strong>Most played:</strong> <span id="mostDisplay">N/A</span></p>
-    <p><strong>Preloaded:</strong> <span id="preloadDisplay">N/A</span></p>
     <p><a href="#" onclick="clearData(event)">Clear saved data</a></p>
   </div>
 </div>
@@ -134,21 +140,15 @@ iframe.active{display:block}
 
 <div id="iframeContainer">
   <!-- Each iframe has sandbox + allowfullscreen -->
-  <iframe id="v1" allowfullscreen
-          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v5" allowfullscreen
-          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="vM" allowfullscreen
-          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v2" allowfullscreen
-          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v3" allowfullscreen
-          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v4" allowfullscreen
-          sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v1" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v5" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="vM" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v2" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v3" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v4" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
 </div>
 
-<!-- Hidden internal links for SEO -->
+<!-- Hidden SEO links -->
 <div class="hiddenSEO">
   <a href="https://sites.google.com/view/staticquasar931/gm3z/fake-gta-escape-road">Fake GTA – Escape Road</a>
   <a href="https://sites.google.com/view/staticquasar931/gm3z/blooky-blasta">Blooky Blasta</a>
@@ -160,6 +160,7 @@ iframe.active{display:block}
 </div>
 
 <script>
+/* ---------- Constants & Maps ---------- */
 const NS='mcHub_';
 const SRC={
   v1:"https://eaglercraft.com/mc/1.8.8/",
@@ -169,7 +170,7 @@ const SRC={
   v3:"https://staticquasar931.github.io/Minecraft/",
   v4:"https://staticquasar931.github.io/eaglercrafthtml/"
 };
-const labelMap={
+const LABEL={
   v1:"Minecraft (Main – 1.8.8)",
   v5:"Minecraft (1.12.2) (NEW)",
   vM:"Minecraft (Mobile)",
@@ -179,147 +180,149 @@ const labelMap={
 };
 const $=q=>document.querySelector(q);
 
-/* storage */
-const sGet=k=>localStorage.getItem(NS+k)||"";
-const sSet=(k,v)=>v?localStorage.setItem(NS+k,v):localStorage.removeItem(NS+k);
-const jGet=k=>{try{return JSON.parse(sGet(k)||"{}");}catch{return {}}};
-const jSet=(k,o)=>sSet(k,JSON.stringify(o));
+/* ---------- Storage helpers ---------- */
+const g=k=>localStorage.getItem(NS+k)||"";
+const s=(k,v)=>v?localStorage.setItem(NS+k,v):localStorage.removeItem(NS+k);
+const jg=k=>{try{return JSON.parse(g(k)||"{}");}catch{return {}}};
+const js=(k,obj)=>s(k,JSON.stringify(obj));
 
+/* ---------- State ---------- */
 let cur=null,fadeTimer=0,focusWarn=false;
 
-/* layout helpers */
-function positionFloating(){
+/* ---------- UI Helpers ---------- */
+function positionFloaters(){
   const menu=$("#menu"),help=$("#helpBtn");
-  const rect=menu.getBoundingClientRect();
-  help.style.top=`${rect.top+rect.height/2}px`;
-  help.style.left=`${rect.left-help.offsetWidth-18}px`;
+  const r=menu.getBoundingClientRect();
+  help.style.top=`${r.top+r.height/2-help.offsetHeight/2}px`;
+  help.style.left=`${r.left-help.offsetWidth-20}px`;
 }
 function placeCorner(corner){
-  const menu=$("#staticMenu"),toggle=$("#posToggle");
-  ['top','bottom','left','right'].forEach(p=>{menu.style[p]=toggle.style[p]='';});
-  const [v,h]=[corner[0]==='t'?'top':'bottom',corner[1]==='l'?'left':'right'];
-  menu.style[v]=toggle.style[v]='15px';
-  menu.style[h]=toggle.style[h]='15px';
-  positionFloating();
+  const sm=$("#staticMenu"),tg=$("#posToggle");
+  ['top','bottom','left','right'].forEach(p=>{sm.style[p]=tg.style[p]='';});
+  const v=corner[0]==='t'?'top':'bottom',h=corner[1]==='l'?'left':'right';
+  sm.style[v]=tg.style[v]='15px';
+  sm.style[h]=tg.style[h]='15px';
+  positionFloaters();
 }
 function cycleCorner(){
   const order=['tl','tr','br','bl'];
-  const next=order[(order.indexOf(sGet('corner')||'tl')+1)%4];
-  sSet('corner',next);placeCorner(next);
+  const next=order[(order.indexOf(g('corner')||'tl')+1)%4];
+  s('corner',next);placeCorner(next);
 }
-
-/* buttons */
 function updateButtons(){
-  const fav=sGet('favorite'),pre=sGet('preload');
+  const fav=g('favorite');
   document.querySelectorAll('.menu button').forEach(btn=>{
     const id=btn.dataset.id;
-    const isFav=fav===id,isPre=pre===id;
-    btn.textContent=(isFav?'★ ':'')+btn.dataset.label+(isPre?' +':'');
-    btn.setAttribute('aria-pressed',isFav);
+    btn.textContent=`${fav===id?'★ ':''}${btn.dataset.label}`;
+    btn.setAttribute('aria-pressed',fav===id);
     btn.classList.toggle('activeBtn',cur===id);
   });
 }
 
-/* play counts */
-function recordPlay(id){const p=jGet('plays');p[id]=(p[id]||0)+1;jSet('plays',p);}
-function mostPlayed(){const p=jGet('plays');return Object.keys(p).reduce((a,b)=>p[a]>=p[b]?a:b,'');}
+/* ---------- Stats helpers ---------- */
+function recordPlay(id){const p=jg('plays');p[id]=(p[id]||0)+1;js('plays',p);}
+const mostPlayed=()=>{const p=jg('plays');return Object.keys(p).reduce((a,b)=>p[a]>=p[b]?a:b,'');};
 
-/* note */
-function showNote(txt){
+/* ---------- Notes ---------- */
+function showNote(txt,duration=6000){
   clearTimeout(fadeTimer);
   const note=$("#gameNote");
-  note.textContent=txt;
-  note.classList.add('show');
-  fadeTimer=setTimeout(()=>note.classList.remove('show'),10000);
+  note.textContent=txt;note.classList.add('show');
+  fadeTimer=setTimeout(()=>note.classList.remove('show'),duration);
 }
 
-/* run */
+/* ---------- Game Loading ---------- */
+function unloadAllExcept(idToKeep){
+  document.querySelectorAll('#iframeContainer iframe').forEach(f=>{
+    if(f.id!==idToKeep){f.removeAttribute('src');f.classList.remove('active');}
+  });
+}
 function run(id){
-  if(id===cur)return;
-  if(cur){const f=$('#'+cur);f.removeAttribute('src');f.classList.remove('active');}
-  cur=id;recordPlay(id);sSet('lastPlayed',id);focusWarn=false;
+  if(id===cur) return;
+  unloadAllExcept(id);                 // make sure only one game at a time
+  cur=id;recordPlay(id);s('lastPlayed',id);focusWarn=false;
   $("#menu").style.display='none';
   $("#backBtn").style.display='block';
   $("#posToggle").style.display='none';
   $("#helpBtn").style.display='none';
   updateButtons();
 
-  const frame=$('#'+id);
+  const frame=$(`#${id}`);
   if(frame.dataset.ld){
     frame.classList.add('active');frame.contentWindow.focus();
   }else{
     frame.onload=()=>{frame.contentWindow.focus();focusWarn=false;frame.onload=null};
     frame.src=SRC[id];frame.dataset.ld=1;frame.classList.add('active');
   }
-  showNote('Loading '+labelMap[id]+'… Typing may need refresh.');
+  showNote(`Loading ${LABEL[id]}…`);
 }
 
-/* back */
+/* ---------- Back to Menu ---------- */
 function goBack(){
-  if(cur){const f=$('#'+cur);f.removeAttribute('src');f.classList.remove('active');cur=null;}
+  unloadAllExcept(null); cur=null;
   $("#menu").style.display='flex';
   $("#backBtn").style.display='none';
   $("#posToggle").style.display='block';
   $("#helpBtn").style.display='block';
-  updateButtons();
-  positionFloating();
+  updateButtons();positionFloaters();
 }
 
-/* help overlay */
+/* ---------- Help ---------- */
 function toggleHelp(){
   const ov=$("#helpOverlay");
   if(ov.style.display==='block'){ov.style.display='none';return;}
-  $("#favDisplay").textContent=sGet('favorite')?labelMap[sGet('favorite')]:'N/A';
-  $("#mostDisplay").textContent=mostPlayed()?labelMap[mostPlayed()]:'N/A';
-  $("#preloadDisplay").textContent=sGet('preload')?labelMap[sGet('preload')]:'N/A';
+  $("#favDisplay").textContent=g('favorite')?LABEL[g('favorite')]:'N/A';
+  $("#mostDisplay").textContent=mostPlayed()?LABEL[mostPlayed()]:'N/A';
   ov.style.display='block';
 }
 
-/* clear data */
+/* ---------- Clear Data ---------- */
 function clearData(e){
   e.preventDefault();
   if(confirm('Clear all saved data?')&&confirm('Are you absolutely sure?')){
-    ['favorite','plays','corner','lastPlayed','preload'].forEach(k=>sSet(k,''));
-    alert('Saved data cleared. Reloading…');setTimeout(()=>location.reload(),50);
+    ['favorite','plays','corner','lastPlayed'].forEach(k=>s(k,''));
+    alert('Saved data cleared. Reloading…');setTimeout(()=>location.reload(),40);
   }
 }
 
-/* auto-focus */
+/* ---------- Auto-focus safeguard ---------- */
 setInterval(()=>{
-  if(cur){try{$('#'+cur).contentWindow.focus();focusWarn=false;}catch(e){if(!focusWarn){console.warn(e);focusWarn=true;}}}
+  if(cur){try{$(`#${cur}`).contentWindow.focus();focusWarn=false;}catch(e){if(!focusWarn){console.warn(e);focusWarn=true;}}}
 },3000);
 
-/* init */
+/* ---------- DOM Ready ---------- */
 window.addEventListener('DOMContentLoaded',()=>{
-  const preload=sGet('favorite')||mostPlayed()||'v1';
-  sSet('preload',preload);
-  $('#'+preload).src=SRC[preload];$('#'+preload).dataset.ld=1;
-  placeCorner(sGet('corner')||'tl');
-  updateButtons();
-  positionFloating();
-  window.addEventListener('resize',positionFloating);
+  const preload=g('favorite')||mostPlayed()||'v1';
+  // Preload silently but don’t mark with “+”
+  $(`#${preload}`).src=SRC[preload];$(`#${preload}`).dataset.ld=1;
+  placeCorner(g('corner')||'tl');updateButtons();positionFloaters();
 
   document.querySelectorAll('.menu button').forEach(btn=>{
     btn.addEventListener('click',()=>run(btn.dataset.id));
     btn.addEventListener('contextmenu',e=>{
       e.preventDefault();const id=btn.dataset.id;
-      sSet('favorite',sGet('favorite')===id?'':id);updateButtons();
+      s('favorite',g('favorite')===id?'':id);updateButtons();
     });
   });
-  showNote('Welcome! '+labelMap[preload]+' is preloaded for faster start.');
+
+  showNote(`Welcome! ${LABEL[preload]} is ready to start.`,4500);
 });
-$('#staticMenuClose').onclick=()=>$('#staticMenu').style.display='none';
+$("#staticMenuClose").onclick=()=>$("#staticMenu").style.display='none';
 document.addEventListener('keydown',e=>{
   if(e.key==='Escape'){
-    if($('#helpOverlay').style.display==='block')toggleHelp();
+    if($("#helpOverlay").style.display==='block')toggleHelp();
     else if(cur)goBack();
   }
 });
 
-/* leave warn */
+/* ---------- Quit warn ---------- */
 window.addEventListener('beforeunload',e=>{
   e.preventDefault();e.returnValue='Are you sure you want to leave?';
 });
+
+/* ---------- Events ---------- */
+$("#posToggle").onclick=cycleCorner;
+$("#helpBtn").onclick=toggleHelp;
 </script>
 </body>
 </html>
