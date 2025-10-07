@@ -7,312 +7,731 @@
 
 <!-- Canonical / SEO -->
 <link rel="canonical" href="https://staticquasar931.github.io/Minecraft-hub/"/>
-<meta name="description" content="Play unblocked Minecraft right in your browser (1.8.8, 1.12.2, mobile & backups). Favorites and most‑played remembered."/>
-<meta name="keywords" content="Minecraft 1.8.8,Minecraft 1.12.2,Minecraft mobile,unblocked Minecraft,Eaglercraft,Chromebook games,StaticQuasar931,Minecraft GitHub"/>
-<meta property="og:title" content="Play Minecraft (Eaglercraft) Unblocked | StaticQuasar931"/>
+<meta name="description" content="Play Minecraft in your browser. Favorites and most played are remembered."/>
+<meta name="keywords" content="Minecraft,Eaglercraft,Chromebook games,StaticQuasar931,Minecraft GitHub"/>
+<meta property="og:title" content="Play Minecraft | StaticQuasar931"/>
 <meta property="og:url" content="https://staticquasar931.github.io/Minecraft-hub/"/>
-<meta property="og:description" content="Choose 1.8.8, 1.12.2, mobile or multiplayer builds. Favorite & most‑played remembered."/>
+<meta property="og:description" content="Choose your version. Favorite and most played remembered."/>
 <meta property="og:image" content="https://res.cloudinary.com/dcsrqennd/image/upload/v1757883396/Minecraft_EaglerCraft_StaticQuasar931_Github_wwo4ae.jpg"/>
 <meta name="theme-color" content="#0ff"/>
 
-<!-- Favicon -->
-<link rel="icon" type="image/webp" href="https://res.cloudinary.com/dcsrqennd/image/upload/v1746484849/minecraft_logo_icon_168974_l7f6bw.webp"/>
+<!-- Dynamic favicon for switcher -->
+<link id="dynamicFavicon" rel="icon" href="https://res.cloudinary.com/dcsrqennd/image/upload/v1746484849/minecraft_logo_icon_168974_l7f6bw.webp"/>
 
-<!-- Google tag (gtag.js) -->
+<!-- Google tag -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-51RKDMT6JK"></script>
 <script>
 window.dataLayer = window.dataLayer || [];
 function gtag(){dataLayer.push(arguments);}
-gtag('js', new Date());
-gtag('config', 'G-51RKDMT6JK');
+gtag('js', new Date()); gtag('config', 'G-51RKDMT6JK');
 </script>
 
-<link rel="preconnect" href="https://eaglercraft.com"/>
-<link rel="preload" as="document" href="https://eaglercraft.com/mc/1.8.8/" crossorigin/>
-
 <style>
-:root{--accent:#0ff;--bg:#111;--panel:#1b1b1b;--noteSize:14px}
-html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',sans-serif;overflow:hidden}
+:root{--accent:#0ff;--bg:#111;--panel:#1b1b1b;--muted:#9fd;--noteSize:14px}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;background:var(--bg);color:#fff;font-family:'Segoe UI',system-ui,Arial,sans-serif;overflow:hidden}
 
 /* Menu */
-.menu{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-      display:flex;flex-direction:column;gap:16px;max-width:440px;width:92vw;background:var(--panel);
-      padding:34px 38px;border-radius:16px;box-shadow:0 0 18px rgba(0,255,255,.25);text-align:center;z-index:1000}
-.menu h2{margin:0 0 12px;color:var(--accent)}
-.menu button{background:linear-gradient(135deg,#111,#333);color:var(--accent);
-      border:2px solid var(--accent);padding:16px;border-radius:10px;font-size:18px;cursor:pointer;transition:.15s}
-.menu button:hover{background:var(--accent);color:#111;transform:scale(1.05)}
-.menu button.activeBtn{box-shadow:0 0 8px var(--accent)}
-.credit{font-size:16px;color:var(--accent);margin-top:10px}
-.credit a{color:var(--accent);text-decoration:none;font-weight:bold}
-.noteBlock{margin-top:12px;font-size:17px;line-height:1.45;color:var(--accent)}
-.infoRow{margin-top:18px;display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
-.infoRow a{color:var(--accent);text-decoration:none;font-weight:bold}
+.menu{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  display:flex;flex-direction:column;gap:14px;width:min(92vw,560px);
+  background:var(--panel);padding:24px 20px;border-radius:16px;
+  box-shadow:0 0 18px rgba(0,255,255,.25);text-align:center;z-index:1000
+}
+.menu h2{margin:0 0 6px;color:var(--accent);font-weight:700}
+.menu p.sub{margin:0;color:var(--muted);font-size:14px}
+.btnRow{display:flex;flex-direction:column;gap:10px;margin-top:10px}
+.menu .btn{
+  width:100%;min-height:50px;
+  background:linear-gradient(135deg,#151515,#2a2a2a);color:var(--accent);
+  border:2px solid var(--accent);padding:14px 16px;border-radius:12px;font-size:17px;
+  cursor:pointer;transition:transform .12s,background .12s,color .12s,box-shadow .12s;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis
+}
+.menu .btn:hover{background:var(--accent);color:#111;transform:translateY(-1px)}
+.menu .btn:focus-visible{outline:3px solid #7ff;outline-offset:2px}
+.menu .btn.activeBtn{box-shadow:0 0 8px var(--accent)}
 
-/* Floating widgets */
-#staticMenu{position:fixed;display:flex;align-items:center;gap:6px;background:#222;padding:11px 15px;border-radius:14px;
-            font:16px/1 'Segoe UI',sans-serif;color:var(--accent);font-weight:bold;
-            box-shadow:0 0 8px rgba(0,255,255,.3);max-width:260px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:9999}
+/* Dropdown toggle */
+#moreToggle{
+  align-self:center; display:inline-flex; align-items:center; gap:8px;
+  background:transparent; color:var(--muted); border:1px solid rgba(0,255,255,.35);
+  padding:8px 14px; border-radius:10px; font-weight:700; cursor:pointer;
+}
+#moreToggle:focus-visible{outline:3px solid #7ff; outline-offset:2px}
+#chev{display:inline-block;transition:transform .18s}
+.moreRow{display:none;flex-direction:column;gap:10px;margin-top:12px}
+.moreRow.open{display:flex}
+
+/* Status strip */
+.noteBlock{
+  margin-top:6px;font-size:15px;line-height:1.45;color:var(--muted);
+  background:#1a1a1a;border:1px solid rgba(0,255,255,.25);border-radius:10px;padding:10px 12px
+}
+.credit{font-size:13px;color:var(--muted)}
+
+/* Floaters */
+#staticMenu{
+  position:fixed;top:15px;left:15px;display:flex;align-items:center;gap:6px;
+  background:#222;padding:10px 14px;border-radius:14px;
+  font:15px/1 'Segoe UI',system-ui,sans-serif;color:var(--accent);font-weight:600;
+  box-shadow:0 0 8px rgba(0,255,255,.3);max-width:min(70vw,360px);
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;z-index:9999
+}
 #staticMenu a{color:var(--accent);text-decoration:none}
 #staticMenuClose{cursor:pointer;font-size:18px;line-height:1}
-#posToggle,#helpBtn{position:fixed;font-size:15px;background:var(--accent);color:#000;border:none;border-radius:8px;
-          padding:7px 14px;font-weight:bold;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999}
-#helpBtn{padding:7px 18px}
+#helpBtn{
+  position:fixed;right:15px;bottom:15px;font-size:14px;background:var(--accent);color:#000;border:none;border-radius:10px;
+  padding:9px 14px;font-weight:700;cursor:pointer;box-shadow:0 0 6px var(--accent);z-index:9999
+}
 
-.backBtn{position:absolute;top:20px;right:20px;display:none;background:var(--accent);color:#000;
-        padding:14px 26px;border:none;border-radius:10px;font-weight:bold;box-shadow:0 0 8px var(--accent);cursor:pointer;z-index:1001}
+/* Favicon Options menu */
+#topRightMenuWrap{
+  position:fixed; top:12px; right:12px; z-index:100000;
+  display:flex; flex-direction:column; align-items:flex-end; gap:8px;
+  transition:opacity .25s ease, transform .25s ease, visibility .25s ease;
+}
+#menuButton{
+  appearance:none; border:0; cursor:pointer;
+  background:linear-gradient(135deg, rgba(20,20,28,.9), rgba(20,20,28,.6));
+  color:#e8f3ff; padding:10px 14px; border-radius:12px;
+  font-weight:700; box-shadow:0 0 12px rgba(94,225,255,.4);
+  border:1px solid rgba(94,225,255,.35);
+}
+#dropdown{
+  position:absolute; right:0; top:46px; min-width:320px;
+  background:linear-gradient(135deg, rgba(20,20,28,.95), rgba(20,20,28,.7));
+  color:#eaffff; border-radius:12px;
+  box-shadow:0 10px 24px rgba(0,0,0,.4); padding:10px; display:none;
+  border:1px solid rgba(94,225,255,.35);
+}
+#dropdown button{
+  width:100%; text-align:left; background:transparent; color:inherit;
+  border:0; padding:10px 12px; border-radius:8px; cursor:pointer;
+}
+#dropdown button:hover{ background:rgba(94,225,255,.12); }
+#dropdown .opt-title{ font-weight:800; margin-bottom:2px; }
+#dropdown small{ display:block; opacity:.8; font-size:11px; line-height:1.35; }
+#restoreHint{
+  display:none; background:#111; color:#fff; padding:8px 12px; border-radius:10px; font-size:12px;
+  box-shadow:0 0 10px rgba(255,255,255,.2);
+}
+
+/* Back in play mode */
+.backBtn{
+  position:absolute;top:16px;right:16px;display:none;background:var(--accent);color:#000;
+  padding:12px 18px;border:none;border-radius:12px;font-weight:700;box-shadow:0 0 8px var(--accent);
+  cursor:pointer;z-index:1001
+}
 
 /* Game area */
 #iframeContainer{height:100%}
 iframe{width:100%;height:100%;border:none;display:none}
 iframe.active{display:block}
 
-/* Note */
-#gameNote{position:fixed;bottom:14px;left:50%;transform:translateX(-50%);background:#222;padding:9px 20px;border-radius:11px;
-         color:var(--accent);font-size:var(--noteSize);box-shadow:0 0 8px rgba(0,255,255,.3);opacity:0;pointer-events:none;
-         z-index:1001;transition:opacity .35s}
+/* Toast */
+#gameNote{
+  position:fixed;bottom:14px;left:50%;transform:translateX(-50%);
+  background:#222;padding:9px 20px;border-radius:11px;color:var(--accent);font-size:var(--noteSize);
+  box-shadow:0 0 8px rgba(0,255,255,.3);opacity:0;pointer-events:none;z-index:1001;transition:opacity .28s
+}
 #gameNote.show{opacity:1}
 
-/* Help */
-#helpOverlay{position:fixed;inset:0;background:rgba(0,0,0,.7);display:none;z-index:1003}
-#helpContent{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);
-             background:#222;padding:28px 36px;border-radius:14px;color:var(--accent);
-             max-width:440px;width:92vw}
+/* Help overlay + modal */
+#helpOverlay{
+  position:fixed;inset:0;display:none;z-index:1003;
+  background:rgba(0,0,0,.55);backdrop-filter:blur(2px)
+}
+#helpContent{
+  position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);
+  background:#1c1c1c;border:1px solid rgba(0,255,255,.28);
+  padding:18px;border-radius:14px;color:var(--accent);
+  width:min(96vw,780px);max-height:85vh;overflow:auto
+}
 #helpContent h3{margin:0 0 8px;color:#0ff}
-#helpContent a{color:#0ff}
+#helpClose{
+  position:sticky;top:0;margin-left:auto;display:inline-block;
+  background:var(--accent);border:none;border-radius:8px;padding:6px 10px;
+  font-weight:800;cursor:pointer;color:#000
+}
+.statsGrid{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-top:10px
+}
+@media (max-width:720px){ .statsGrid{grid-template-columns:1fr 1fr} }
+.stat{background:#121212;border:1px solid rgba(0,255,255,.22);border-radius:10px;padding:10px 12px;text-align:left}
+.stat .k{color:#9fd;font-size:12px}
+.stat .v{color:#0ff;font-size:16px;font-weight:700;margin-top:4px}
+.helpBtns{display:flex;gap:10px;margin-top:12px;flex-wrap:wrap}
+.helpBtns button{
+  background:var(--accent);border:none;border-radius:10px;padding:8px 12px;font-weight:800;cursor:pointer;color:#000
+}
 
 /* Hidden SEO links */
 .hiddenSEO{position:absolute;left:-9999px;top:-9999px;height:0;width:0;overflow:hidden}
+
+/* UI vanish: only hide chrome, not game or menu */
+body.ui-hidden #staticMenu,
+body.ui-hidden #helpBtn,
+body.ui-hidden .backBtn,
+body.ui-hidden #topRightMenuWrap{display:none !important}
+
+/* Small screens */
+@media (max-height:620px){
+  .menu{position:fixed;top:12px;bottom:12px;transform:none;overflow:auto}
+}
 </style>
 </head>
 <body>
 
-<div class="menu" id="menu" role="dialog" aria-modal="true">
-  <h2>Choose a Minecraft Version</h2>
+<!-- Start Screen -->
+<div class="menu" id="menu" role="dialog" aria-modal="true" aria-labelledby="menuTitle">
+  <h2 id="menuTitle">Choose a Minecraft Version</h2>
+  <p class="sub">Right click to favorite. Most played is tracked. Shortcuts in Help. Y+U+I hides UI chrome.</p>
 
-  <button id="btn-v1" data-id="v1" data-label="Minecraft (Main – 1.8.8)" aria-pressed="false">Minecraft (Main – 1.8.8)</button>
-  <button id="btn-v5" data-id="v5" data-label="Minecraft (1.12.2) (NEW)" aria-pressed="false">Minecraft (1.12.2) (NEW)</button>
-  <button id="btn-vM" data-id="vM" data-label="Minecraft (Mobile)" aria-pressed="false">Minecraft (Mobile)</button>
-  <button id="btn-v2" data-id="v2" data-label="Minecraft Backup (1.5.2)" aria-pressed="false">Minecraft Backup (1.5.2)</button>
-  <button id="btn-v3" data-id="v3" data-label="Minecraft Second Backup" aria-pressed="false">Minecraft Second Backup</button>
-  <button id="btn-v4" data-id="v4" data-label="Eaglercraft (Multiplayer)" aria-pressed="false">Eaglercraft (Multiplayer)</button>
-
-  <div class="infoRow">
-    <a href="https://discord.gg/DP2hM7RRhR" target="_blank">Join Discord</a>
-    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfFiegPH6GsWIWERzfbtptJW2GMk4exkrTQsdqlR2-2oj83zA/viewform" target="_blank">Submit Feedback</a>
+  <!-- Featured -->
+  <div class="btnRow" aria-label="Featured versions">
+    <button class="btn" id="btn-vx88" data-id="vx88" data-label="Minecraft EaglercraftX 1.8 - Stable" aria-pressed="false">Minecraft EaglercraftX 1.8 - Stable</button>
+    <button class="btn" id="btn-vx112" data-id="vx112" data-label="Minecraft EaglercraftX 1.12 - Newer" aria-pressed="false">Minecraft EaglercraftX 1.12 - Newer</button>
   </div>
 
-  <div class="noteBlock">
-    <strong>★ Right‑click a button to set as favorite.</strong><br>
-    Multiplayer/LAN may not work at school — I’m working on it.<br>
-    ⚠️ Typing may break after sharing a world; refresh if needed.
+  <!-- Dropdown toggle and content -->
+  <button id="moreToggle" type="button" aria-expanded="false" aria-controls="moreList">
+    <span id="chev">▶</span> <span id="ddLabel">Show more versions</span>
+  </button>
+
+  <div id="moreList" class="moreRow" aria-label="More versions">
+    <button class="btn" id="btn-v2" data-id="v2" data-label="Minecraft Backup 1.5.2" aria-pressed="false">Minecraft Backup 1.5.2</button>
+    <button class="btn" id="btn-v3" data-id="v3" data-label="Minecraft Second Backup" aria-pressed="false">Minecraft Second Backup</button>
+    <button class="btn" id="btn-v4" data-id="v4" data-label="Eaglercraft Multiplayer (download)" aria-pressed="false">Eaglercraft Multiplayer (download)</button>
   </div>
 
-  <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank">StaticQuasar931</a></div>
+  <div class="noteBlock" role="status" aria-live="polite">
+    Multiplayer works as a download in a new tab.
+  </div>
+
+  <div class="credit">Enhanced by <a href="https://sites.google.com/view/staticquasar931" target="_blank" rel="noopener">StaticQuasar931</a></div>
 </div>
 
-<button id="helpBtn" aria-label="Help">Help</button>
-<button id="posToggle" aria-label="Move Menu">Move Menu</button>
-
-<div id="helpOverlay" role="dialog" aria-modal="true" onclick="toggleHelp()">
-  <div id="helpContent" onclick="event.stopPropagation()">
-    <h3>Help / Info</h3>
-    <p>⭐ Right‑click any version to set/unset your Favorite (adds star).</p>
-    <p>📈 Most‑played version is tracked locally.</p>
-    <p>⌨️ If typing stops working, refresh the page.</p>
-    <p><strong>Favorite:</strong> <span id="favDisplay">N/A</span></p>
-    <p><strong>Most played:</strong> <span id="mostDisplay">N/A</span></p>
-    <p><a href="#" onclick="clearData(event)">Clear saved data</a></p>
-  </div>
-</div>
-
-<div id="gameNote" aria-live="polite"></div>
-
+<!-- Floaters -->
 <div id="staticMenu">
-  <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank">More Unblocked Games by Static</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z" target="_blank" rel="noopener">More Unblocked Games by Static</a>
   <span id="staticMenuClose" role="button" aria-label="Close Menu">&times;</span>
 </div>
-<button id="backBtn" class="backBtn" onclick="goBack()" aria-label="Back to Versions">Back to Versions</button>
+<button id="helpBtn" aria-label="Help">Help</button>
 
-<div id="iframeContainer">
-  <!-- Each iframe has sandbox + allowfullscreen -->
-  <iframe id="v1" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v5" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="vM" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v2" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v3" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
-  <iframe id="v4" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+<!-- Favicon Options menu -->
+<div id="topRightMenuWrap" aria-label="Favicon options">
+  <button id="menuButton" aria-haspopup="true" aria-expanded="false">Favicon Options</button>
+  <div id="dropdown" role="menu" aria-label="Favicon options dropdown">
+    <div style="padding:8px 10px 2px; font-size:12px; opacity:.85;">
+      Your choice is saved locally. Shift+O+P cycles. 0+O+P shows this in game.
+    </div>
+    <hr style="opacity:.15;border:none;border-top:1px solid #ffffff22;margin:8px 0;">
+    <button id="optMainFavicon" role="menuitem">
+      <div class="opt-title">Use or keep main favicon</div>
+      <small>Restores the original Minecraft hub icon and title.</small>
+    </button>
+    <button id="optAeries" role="menuitem">
+      <div class="opt-title">Switch to Aeries style</div>
+      <small>Changes page title and favicon to an Aeries look.</small>
+    </button>
+    <button id="optHideMenu" role="menuitem">
+      <div class="opt-title">Hide this menu</div>
+      <small>Hides Favicon Options. Press 0+O+P to show it again.</small>
+    </button>
+  </div>
+  <div id="restoreHint" aria-live="polite">Favicon Options hidden. Use 0+O+P to show</div>
+</div>
+
+<!-- Help -->
+<div id="helpOverlay" role="dialog" aria-modal="true" aria-hidden="true">
+  <div id="helpContent">
+    <button id="helpClose" aria-label="Close Help">Close</button>
+    <h3>Help</h3>
+
+    <ul style="text-align:left; line-height:1.45; margin:8px 0 12px 18px; padding:0">
+      <li><strong>What this does</strong> - Launches one browser Minecraft build at a time for stability and speed.</li>
+      <li><strong>Preload rules</strong> - Favorite first, then Most Played, then Last Played if over 2 minutes ago, else default 1.8 Stable.</li>
+      <li><strong>Only one loaded at once</strong> - The chosen game stays loaded when you go back to the hub. No second preload is started at the same time.</li>
+      <li><strong>Favorite</strong> - Right click any version button to toggle a star. The starred one has top priority.</li>
+      <li><strong>Most Played</strong> - Tracks how many times you launched each version. Used when no favorite is set.</li>
+      <li><strong>Last Played</strong> - If your last play was more than 2 minutes ago, that version is preloaded in the hub if no higher rule applies.</li>
+      <li><strong>Multiplayer</strong> - Works as a download in a new tab. It does not load inside the page.</li>
+      <li><strong>UI hide</strong> - Y+U+I hides or shows extra chrome like Help, Back, More Games, and Favicon Options.</li>
+      <li><strong>Favicon Options visibility</strong> - Shown by default on the hub unless you hide UI or hide the menu. In game, press 0+O+P to show or hide it temporarily.</li>
+      <li><strong>Favicon switching</strong> - Press Shift+O+P to cycle through the available icons. Your pick is saved.</li>
+      <li><strong>Help anywhere</strong> - Press L+P to open Help even while playing.</li>
+      <li><strong>Escape</strong> - Closes Help or returns to the hub from a game.</li>
+      <li><strong>Reset data</strong> - Use Clear saved data in Help. Click twice to confirm. This resets favorites, stats, and choices.</li>
+      <li><strong>Privacy</strong> - All stats are local on your browser via localStorage only.</li>
+    </ul>
+
+    <div class="statsGrid">
+      <div class="stat"><div class="k">Favorite</div><div id="statFav" class="v">N/A</div></div>
+      <div class="stat"><div class="k">Most played</div><div id="statMost" class="v">N/A</div></div>
+      <div class="stat"><div class="k">Total launches</div><div id="statLaunches" class="v">0</div></div>
+      <div class="stat"><div class="k">Versions tried</div><div id="statTried" class="v">0</div></div>
+      <div class="stat"><div class="k">Session time</div><div id="statSession" class="v">00:00:00</div></div>
+      <div class="stat"><div class="k">Last played</div><div id="statLast" class="v">N/A</div></div>
+      <div class="stat"><div class="k">Space bars pressed</div><div id="statSpace" class="v">0</div></div>
+      <div class="stat"><div class="k">Buttons clicked</div><div id="statClicks" class="v">0</div></div>
+      <div class="stat"><div class="k">Secret vanishes</div><div id="statVanish" class="v">0</div></div>
+    </div>
+
+    <div class="helpBtns">
+      <button id="btnClear">Clear saved data</button>
+      <button id="btnCloseHelp">OK</button>
+    </div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div id="gameNote" aria-live="polite"></div>
+
+<!-- Back from game -->
+<button id="backBtn" class="backBtn" aria-label="Back to Versions">Back to Versions</button>
+
+<!-- Iframes -->
+<div id="iframeContainer" aria-hidden="true">
+  <iframe id="vx88" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="vx112" allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v2"   allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <iframe id="v3"   allowfullscreen sandbox="allow-scripts allow-same-origin allow-pointer-lock allow-popups allow-popups-to-escape-sandbox allow-forms allow-modals allow-presentation allow-downloads"></iframe>
+  <!-- v4 is download only -->
 </div>
 
 <!-- Hidden SEO links -->
 <div class="hiddenSEO">
-  <a href="https://sites.google.com/view/staticquasar931/gm3z/fake-gta-escape-road">Fake GTA – Escape Road</a>
-  <a href="https://sites.google.com/view/staticquasar931/gm3z/blooky-blasta">Blooky Blasta</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z/fake-gta-escape-road">Fake GTA Escape Road</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z/blooky-blasta">Blooky Blasta</a>
   <a href="https://sites.google.com/view/staticquasar931/gm3z/slope">Slope</a>
-  <a href="https://sites.google.com/view/staticquasar931/gm3z/subway-runner">Subway Runner</a>
-  <a href="https://sites.google.com/view/staticquasar931/gm3z/subway-surfers_1/subway-surfers-main">Subway Surfers</a>
-  <a href="https://sites.google.com/view/staticquasar931/gm3z/drift-hunters">Drift Hunters</a>
-  <a href="https://sites.google.com/view/staticquasar931/gm3z/snow-rider">Snow Rider</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z/subway-runner">Subway Runner</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z/subway-surfers_1/subway-surfers-main">Subway Surfers</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z/drift-hunters">Drift Hunters</a>
+  <a href="https://sites.google.com/view/staticquasar931/gm3z/snow-rider">Snow Rider</a>
 </div>
 
 <script>
-/* === Helpers === */
+/* ======= Helpers and state ======= */
 const NS='mcHub_', $=q=>document.querySelector(q);
 const g=k=>localStorage.getItem(NS+k)||"", s=(k,v)=>v?localStorage.setItem(NS+k,v):localStorage.removeItem(NS+k);
 const jg=k=>{try{return JSON.parse(g(k)||"{}");}catch{return {}}}, js=(k,o)=>s(k,JSON.stringify(o));
+const now=()=>Date.now();
 
+/* Version sources and labels */
 const SRC={
-  v1:"https://eaglercraft.com/mc/1.8.8/",
-  v5:"https://eaglercraft.com/mc/1.12.2/",
-  vM:"https://eaglercraft.com/mc/1.12.2/?userscript=flameddogo99-eaglermobile.js",
+  vx88:"https://staticquasar931.github.io/EaglercraftX-1.8-Offline/",
+  vx112:"https://staticquasar931.github.io/EaglercraftX-1.12-Offline/",
   v2:"https://staticquasar931.github.io/Eaglercraft1.5.2/",
-  v3:"https://staticquasar931.github.io/Minecraft/",
-  v4:"https://staticquasar931.github.io/eaglercrafthtml/"
+  v3:"https://staticquasar931.github.io/Minecraft/"
 };
 const LABEL={
-  v1:"Minecraft (Main – 1.8.8)",
-  v5:"Minecraft (1.12.2) (NEW)",
-  vM:"Minecraft (Mobile)",
-  v2:"Minecraft Backup (1.5.2)",
+  vx88:"Minecraft EaglercraftX 1.8 - Stable",
+  vx112:"Minecraft EaglercraftX 1.12 - Newer",
+  v2:"Minecraft Backup 1.5.2",
   v3:"Minecraft Second Backup",
-  v4:"Eaglercraft (Multiplayer)"
+  v4:"Eaglercraft Multiplayer (download)"
 };
 
+/* State */
 let cur=null, fadeTimer=0, focusWarn=false;
+let sessionStart=now(), sessionTimer=null;
+let playStartTime=null;
+let clearConfirmUntil=0;
 
-/* -------- Floater positioning -------- */
-function repositionFloaters(){
-  const r=$("#menu").getBoundingClientRect(), help=$("#helpBtn");
-  const gap=Math.max(10,Math.min(40,window.innerWidth*0.03)); /* responsive gap */
-  help.style.top=`${r.top+r.height/2-help.offsetHeight/2}px`;
-  help.style.left=`${r.left-help.offsetWidth-gap}px`;
+/* Fun stats */
+let spaceCount=Number(g('spaceCount')||'0');
+let clickCount=Number(g('clickCount')||'0');
+let vanishCount=Number(g('vanishCount')||'0');
+
+/* ======= Stats storage ======= */
+function bumpLaunches(){ const n=Number(g('launches')||'0')+1; s('launches',String(n)); return n; }
+function recordPlay(id){
+  const p=jg('plays'); p[id]=(p[id]||0)+1; js('plays',p);
+  const tried=new Set((g('tried')||'').split(',').filter(Boolean)); tried.add(id); s('tried',[...tried].join(','));
+  s('lastPlayed',id); s('lastPlayedAt', String(now())); bumpLaunches();
 }
-function setCorner(c){
-  const sm=$("#staticMenu"),tg=$("#posToggle");
-  ['top','bottom','left','right'].forEach(p=>{sm.style[p]=tg.style[p]='';});
-  sm.style[c[0]==='t'?'top':'bottom']=tg.style[c[0]==='t'?'top':'bottom']='15px';
-  sm.style[c[1]==='l'?'left':'right']=tg.style[c[1]==='l'?'left':'right']='15px';
-  repositionFloaters();
-}
-function cycleCorner(){
-  const order=['tl','tr','br','bl'];const next=order[(order.indexOf(g('corner')||'tl')+1)%4];
-  s('corner',next);setCorner(next);
+function mostPlayed(){ const p=jg('plays'); let m='',c=-1; for(const k in p){ if(p[k]>c){ c=p[k]; m=k; } } return m; }
+function beginPlayTimer(){ playStartTime=now(); }
+function commitPlayTime(id){
+  if(!id || !playStartTime) return;
+  const elapsed=now()-playStartTime;
+  const map=jg('playTime'); map[id]=(map[id]||0)+elapsed; js('playTime',map);
+  playStartTime=null;
 }
 
-/* -------- Buttons -------- */
+/* ======= Buttons, notes ======= */
 function updateButtons(){
   const fav=g('favorite');
-  document.querySelectorAll('.menu button').forEach(btn=>{
+  document.querySelectorAll('.menu .btn').forEach(btn=>{
     const id=btn.dataset.id;
     btn.textContent=(fav===id?'★ ':'')+btn.dataset.label;
     btn.setAttribute('aria-pressed',fav===id);
     btn.classList.toggle('activeBtn',cur===id);
   });
 }
-
-/* -------- Stats -------- */
-function recordPlay(id){const p=jg('plays');p[id]=(p[id]||0)+1;js('plays',p);}
-const mostPlayed=()=>{const p=jg('plays');return Object.keys(p).reduce((a,b)=>p[a]>=p[b]?a:b,'');};
-
-/* -------- Notes -------- */
-function showNote(txt,dur=4500){
+function showNote(txt,dur=3600){
   clearTimeout(fadeTimer);
-  $("#gameNote").textContent=txt;$("#gameNote").classList.add('show');
-  fadeTimer=setTimeout(()=>$("#gameNote").classList.remove('show'),dur);
+  const n=$("#gameNote"); if(!n) return;
+  n.textContent=txt; n.classList.add('show');
+  fadeTimer=setTimeout(()=>n.classList.remove('show'),dur);
 }
 
-/* -------- Loading logic -------- */
-function unloadAll(){
+/* ======= Preload logic (priority) =======
+   Favorite > Most Played > Last Played (if over 2 mins) > Default vx88
+*/
+function pickPreloadId(){
+  const fav = g('favorite');
+  if(fav && SRC[fav]) return fav;
+
+  const mp = mostPlayed();
+  if(mp && SRC[mp]) return mp;
+
+  const last = g('lastPlayed');
+  const lastAt = parseInt(g('lastPlayedAt')||'0',10);
+  if(last && SRC[last] && lastAt && (now() - lastAt) > 120000) return last;
+
+  return 'vx88';
+}
+
+/* Only set src for one iframe in hub. If a game is currently chosen and you go back, keep it loaded to preserve state. */
+function preloadInMenu(){
+  if(cur){
+    const f=$(`#${cur}`); if(f){ f.classList.remove('active'); }
+    return;
+  }
+  const id=pickPreloadId();
+  unloadAllExcept(id);
+  const f=$(`#${id}`);
+  if(f && !f.src){
+    f.src=SRC[id]; f.dataset.ld=1;
+  }
+  updateButtons();
+  showNote(`${LABEL[id]} is preloading.`,2000);
+}
+
+/* ======= Loaders ======= */
+function unloadAllExcept(keepId){
   document.querySelectorAll('#iframeContainer iframe').forEach(f=>{
-    f.removeAttribute('src');f.classList.remove('active');delete f.dataset.ld;
+    if(!keepId || f.id!==keepId){ f.removeAttribute('src'); }
+    f.classList.remove('active'); delete f.dataset.ld;
   });
 }
 function loadGame(id){
+  if(id==='v4'){ window.open('https://staticquasar931.github.io/eaglercrafthtml/','_blank','noopener'); showNote('Opening multiplayer download in a new tab.',3000); return; }
   if(id===cur) return;
-  unloadAll();
-  cur=id;recordPlay(id);s('lastPlayed',id);focusWarn=false;
+
+  if(cur) commitPlayTime(cur);
+
+  unloadAllExcept(null);
+
+  cur=id;recordPlay(id);focusWarn=false;
+
   $("#menu").style.display='none';
   $("#backBtn").style.display='block';
-  $("#posToggle").style.display='none';
-  $("#helpBtn").style.display='none';
+  $("#helpBtn").style.display='block';
+
+  // hide Favicon Options while in game by default
+  const wrap=$("#topRightMenuWrap");
+  if(wrap) wrap.style.display='none';
+
   updateButtons();
 
   const frame=$(`#${id}`);
-  frame.onload=()=>{try{frame.contentWindow.focus();}catch{} focusWarn=false;frame.onload=null};
-  frame.src=SRC[id];frame.dataset.ld=1;frame.classList.add('active');
-  showNote(`Loading ${LABEL[id]}…`);
+  beginPlayTimer();
+  frame.onload=()=>{
+    try{frame.contentWindow.focus();}catch{}
+    focusWarn=false;frame.onload=null;
+    showNote(`${LABEL[id]} loaded.`,2200);
+  };
+  if(!frame.src) frame.src=SRC[id];
+  frame.dataset.ld=1; frame.classList.add('active');
+  showNote(`Loading ${LABEL[id]}...`,1500);
 }
 
-/* -------- Back -------- */
+/* Back */
 function goBack(){
-  unloadAll();cur=null;
-  $("#menu").style.display='flex';
-  $("#backBtn").style.display='none';
-  $("#posToggle").style.display='block';
-  $("#helpBtn").style.display='block';
-  updateButtons();repositionFloaters();
-}
-
-/* -------- Help -------- */
-function toggleHelp(){
-  const ov=$("#helpOverlay");
-  if(ov.style.display==='block'){ov.style.display='none';return;}
-  $("#favDisplay").textContent=g('favorite')?LABEL[g('favorite')]:'N/A';
-  $("#mostDisplay").textContent=mostPlayed()?LABEL[mostPlayed()]:'N/A';
-  ov.style.display='block';
-}
-
-/* -------- Clear Data -------- */
-function clearData(e){
-  e.preventDefault();
-  if(confirm('Clear all saved data?')&&confirm('Are you absolutely sure?')){
-    ['favorite','plays','corner','lastPlayed'].forEach(k=>s(k,''));
-    alert('Saved data cleared. Reloading…');setTimeout(()=>location.reload(),40);
-  }
-}
-
-/* -------- Focus safeguard -------- */
-setInterval(()=>{
   if(cur){
     const f=$(`#${cur}`);
-    if(f && f.dataset.ld){try{f.contentWindow.focus();focusWarn=false;}catch(e){if(!focusWarn){console.warn(e);focusWarn=true;}}}
+    if(f){ f.classList.remove('active'); }
+    commitPlayTime(cur);
   }
-},2500);
+  $("#menu").style.display='flex';
+  $("#backBtn").style.display='none';
+  $("#helpBtn").style.display='block';
+  updateButtons(); refreshStats();
+  ensureOptionsVisibilityOnLobby();
+  preloadInMenu();
+}
 
-/* -------- DOM Ready -------- */
+/* Help */
+function openHelp(){ const ov=$("#helpOverlay"); ov.style.display='block'; ov.setAttribute('aria-hidden','false'); refreshStats(); }
+function closeHelp(){ const ov=$("#helpOverlay"); ov.style.display='none'; ov.setAttribute('aria-hidden','true'); }
+function refreshStats(){
+  const favKey=g('favorite'); const statFav=$("#statFav"); if(statFav) statFav.textContent = favKey? LABEL[favKey] : 'N/A';
+  const mp=mostPlayed(); const statMost=$("#statMost"); if(statMost) statMost.textContent = mp? `${LABEL[mp]} (${jg('plays')[mp]} times)` : 'N/A';
+  const launches = Number(g('launches')||'0'); const statLaunch=$("#statLaunches"); if(statLaunch) statLaunch.textContent = String(launches);
+  const tried=(g('tried')||'').split(',').filter(Boolean); const statT=$("#statTried"); if(statT) statT.textContent=String(new Set(tried).size);
+  const statSess=$("#statSession"); if(statSess) statSess.textContent = formatTime(now()-sessionStart);
+  const last=g('lastPlayed'); const statLast=$("#statLast"); if(statLast) statLast.textContent = last? LABEL[last] : 'N/A';
+  $("#statSpace").textContent = String(spaceCount);
+  $("#statClicks").textContent = String(clickCount);
+  $("#statVanish").textContent = String(vanishCount);
+}
+function formatTime(ms){ const s=Math.floor(ms/1000),h=String(Math.floor(s/3600)).padStart(2,'0'),m=String(Math.floor((s%3600)/60)).padStart(2,'0'),ss=String(s%60).padStart(2,'0'); return `${h}:${m}:${ss}`; }
+
+/* Clear saved data */
+function clearDataSmart(){
+  const btn=$("#btnClear");
+  const t=now();
+  if(t<clearConfirmUntil){
+    ['favorite','plays','corner','lastPlayed','lastPlayedAt','tried','playTime','launches','spaceCount','clickCount','vanishCount','sq931_favicon_choice_index','sq931_favicon_menu_hidden'].forEach(k=>s(k,''));
+    spaceCount=0; clickCount=0; vanishCount=0;
+    clearConfirmUntil=0; btn.textContent='Cleared. Reload page to reset.'; btn.disabled=true;
+    showNote('Data cleared. Reload to fully reset.',4000); refreshStats(); return;
+  }
+  clearConfirmUntil=t+5000; btn.textContent='Click again to confirm (5s)';
+  setTimeout(()=>{ if(now()>=clearConfirmUntil && !btn.disabled){ btn.textContent='Clear saved data'; } },5200);
+}
+
+/* Dropdown toggle */
+function setDropdown(open){
+  const list=$("#moreList"), chev=$("#chev"), lab=$("#ddLabel"), toggle=$("#moreToggle");
+  if(!list || !chev || !lab || !toggle) return;
+  list.classList.toggle('open',open);
+  chev.style.transform=open?'rotate(90deg)':'rotate(0deg)';
+  lab.textContent=open?'Hide more versions':'Show more versions';
+  toggle.setAttribute('aria-expanded', String(open));
+}
+
+/* Hotkeys and counters */
+const pressed=new Set();
+let latchYUI=false, latchLP=false, latch0OP=false, latchShiftOP=false;
+function handleKeysDown(e){
+  const k=(e.key||'').toLowerCase();
+  if(k===' ') { spaceCount++; s('spaceCount',String(spaceCount)); }
+  pressed.add(k);
+
+  // Y+U+I - toggle UI chrome (latch to prevent repeat)
+  if(pressed.has('y') && pressed.has('u') && pressed.has('i')){
+    if(!latchYUI){
+      document.body.classList.toggle('ui-hidden');
+      vanishCount++; s('vanishCount',String(vanishCount));
+      latchYUI=true;
+    }
+  }
+
+  // L+P - open Help anywhere
+  if(pressed.has('l') && pressed.has('p')){
+    if(!latchLP){ openHelp(); latchLP=true; }
+  }
+
+  // 0+O+P - show or hide Favicon Options while in game (also restores if hidden)
+  if(pressed.has('0') && pressed.has('o') && pressed.has('p')){
+    if(!latch0OP){
+      const wrap=$("#topRightMenuWrap");
+      if(wrap){
+        const nowShown = wrap.style.display!=='none';
+        // Only auto-show in game or when user hid it
+        if(cur || !nowShown){
+          wrap.style.display = nowShown ? 'none' : 'flex';
+          try{
+            if(nowShown){ localStorage.setItem('sq931_favicon_menu_hidden','1'); }
+            else{ localStorage.removeItem('sq931_favicon_menu_hidden'); }
+          }catch(_){}
+        }
+      }
+      latch0OP=true;
+    }
+  }
+
+  // Shift+O+P - cycle favicon choice
+  if(e.shiftKey && pressed.has('o') && pressed.has('p')){
+    if(!latchShiftOP){
+      window.__cycleFavicon && window.__cycleFavicon();
+      latchShiftOP=true;
+    }
+  }
+
+  // Escape
+  if(k==='escape'){
+    if($("#helpOverlay").style.display==='block') closeHelp();
+    else if(cur && !document.body.classList.contains('ui-hidden')) goBack();
+  }
+}
+function handleKeysUp(e){
+  const k=(e.key||'').toLowerCase();
+  pressed.delete(k);
+  if(k==='y' || k==='u' || k==='i') latchYUI=false;
+  if(k==='l' || k==='p') latchLP=false;
+  if(k==='0' || k==='o' || k==='p') latch0OP=false, latchShiftOP=false;
+  if(k==='shift') latchShiftOP=false;
+}
+addEventListener('keydown',handleKeysDown);
+addEventListener('keyup',handleKeysUp);
+addEventListener('blur',()=>{ pressed.clear(); latchYUI=latchLP=latch0OP=latchShiftOP=false; });
+
+/* Click stat */
+document.addEventListener('click',e=>{
+  if(e.target.classList && e.target.classList.contains('btn')){
+    clickCount++; s('clickCount',String(clickCount));
+  }
+});
+
+/* ======= Favicon switcher ======= */
+(function(){
+  const KEY_CHOICE = "sq931_favicon_choice_index";
+  const KEY_HIDDEN = "sq931_favicon_menu_hidden";
+  const AERIES_ICON  = "https://res.cloudinary.com/dcsrqennd/image/upload/v1758857231/Aeries_Favicon_Real_StaticQuasar931_m1uorx.ico";
+  const AERIES_TITLE = "Aeries Student Dashboard";
+
+  const btn     = document.getElementById('menuButton');
+  const dd      = document.getElementById('dropdown');
+  const optMain = document.getElementById('optMainFavicon');
+  const optAer  = document.getElementById('optAeries');
+  const optHide = document.getElementById('optHideMenu');
+  const wrap    = document.getElementById('topRightMenuWrap');
+  const hint    = document.getElementById('restoreHint');
+
+  const favs = [
+    "https://res.cloudinary.com/dcsrqennd/image/upload/v1746484849/minecraft_logo_icon_168974_l7f6bw.webp",
+    "https://res.cloudinary.com/dcsrqennd/image/upload/v1747533056/raw_um4pvq.png",
+    "https://res.cloudinary.com/dcsrqennd/image/upload/v1747533158/raw_cw34yi.png"
+  ];
+
+  function setFavicon(url){
+    let link = document.querySelector('link#dynamicFavicon[rel="icon"]')
+            || document.querySelector('link[rel="icon"]');
+    if (!link){
+      link = document.createElement('link');
+      link.rel = 'icon';
+      link.id  = 'dynamicFavicon';
+      document.head.appendChild(link);
+    }
+    try {
+      const isWebp = /\.webp(\?|$)/i.test(url);
+      const isPng  = /\.png(\?|$)/i.test(url);
+      link.type = isWebp ? 'image/webp' : (isPng ? 'image/png' : '');
+    } catch(_) {}
+    link.href = url;
+  }
+
+  // last choice
+  let idx = parseInt(localStorage.getItem(KEY_CHOICE) || "0", 10);
+  if (Number.isNaN(idx) || idx < 0 || idx >= favs.length) idx = 0;
+  setFavicon(favs[idx]);
+
+  function closeDropdown(){ dd.style.display='none'; btn.setAttribute('aria-expanded','false'); }
+  function toggleDropdown(){
+    const open = dd.style.display==='block';
+    dd.style.display = open ? 'none' : 'block';
+    btn.setAttribute('aria-expanded', String(!open));
+  }
+
+  btn.addEventListener('click', (e)=>{ e.stopPropagation(); toggleDropdown(); });
+  document.addEventListener('click', ()=> closeDropdown());
+  document.addEventListener('keydown', (e)=>{ if (e.key === 'Escape') closeDropdown(); });
+
+  const ORIGINAL_TITLE = document.title;
+
+  optMain.addEventListener('click', ()=>{
+    idx = 0;
+    setFavicon(favs[idx]);
+    try { localStorage.setItem(KEY_CHOICE, String(idx)); } catch(_) {}
+    document.title = ORIGINAL_TITLE;
+    closeDropdown();
+  });
+
+  optAer.addEventListener('click', ()=>{
+    setFavicon(AERIES_ICON);
+    document.title = AERIES_TITLE;
+    closeDropdown();
+  });
+
+  optHide.addEventListener('click', ()=>{
+    wrap.style.display = 'none';
+    try { localStorage.setItem(KEY_HIDDEN, "1"); } catch(_) {}
+    hint.style.display = 'block';
+    setTimeout(()=>{ hint.style.display = 'none'; }, 3000);
+    closeDropdown();
+  });
+
+  // expose cycle for Shift+O+P
+  window.__cycleFavicon = function(){
+    idx = (idx + 1) % favs.length;
+    setFavicon(favs[idx]);
+    try { localStorage.setItem(KEY_CHOICE, String(idx)); } catch(_) {}
+  };
+
+  // respect hidden state on load, but show by default on hub if not hidden
+  try {
+    if (localStorage.getItem(KEY_HIDDEN) === "1") wrap.style.display = 'none';
+    else wrap.style.display = 'flex';
+  } catch(_) { wrap.style.display = 'flex'; }
+})();
+
+/* Options visibility on lobby */
+function ensureOptionsVisibilityOnLobby(){
+  const wrap = $("#topRightMenuWrap");
+  if(!wrap) return;
+  if(document.body.classList.contains('ui-hidden')) return;
+  try {
+    if(localStorage.getItem("sq931_favicon_menu_hidden")==="1") { wrap.style.display='none'; return; }
+  } catch(_) {}
+  wrap.style.display='flex';
+}
+
+/* ======= DOM Ready ======= */
 window.addEventListener('DOMContentLoaded',()=>{
-  const preload=g('favorite')||mostPlayed()||'v1';
-  $(`#${preload}`).src=SRC[preload];$(`#${preload}`).dataset.ld=1; /* silent preload */
-
-  setCorner(g('corner')||'tl');updateButtons();repositionFloaters();
-  window.addEventListener('resize',repositionFloaters);
-  window.addEventListener('orientationchange',repositionFloaters);
-
-  document.querySelectorAll('.menu button').forEach(btn=>{
+  // Version buttons
+  document.querySelectorAll('.menu .btn').forEach(btn=>{
     btn.addEventListener('click',()=>loadGame(btn.dataset.id));
     btn.addEventListener('contextmenu',e=>{
-      e.preventDefault();const id=btn.dataset.id;
-      s('favorite',g('favorite')===id?'':id);updateButtons();
+      e.preventDefault(); const id=btn.dataset.id;
+      s('favorite', g('favorite')===id ? '' : id); updateButtons(); refreshStats();
     });
   });
 
-  showNote(`Welcome! ${LABEL[preload]} is ready.`,3500);
+  // Dropdown control
+  const mt=$("#moreToggle"); if(mt){ mt.onclick=()=>setDropdown(!$("#moreList").classList.contains('open')); }
+  setDropdown(false);
+
+  // Help
+  $("#helpBtn").onclick=openHelp;
+  $("#helpClose").onclick=closeHelp;
+  $("#btnCloseHelp").onclick=closeHelp;
+  $("#helpOverlay").addEventListener('click',e=>{ if(e.target.id==='helpOverlay') closeHelp(); });
+  $("#btnClear").onclick=(e)=>{e.preventDefault(); clearDataSmart();};
+
+  // Static bar close
+  $("#staticMenuClose").onclick=()=>$("#staticMenu").style.display='none';
+
+  // Back button
+  $("#backBtn").onclick=goBack;
+
+  // Live session timer
+  sessionTimer=setInterval(()=>{ if($("#helpOverlay").style.display==='block'){ const el=$("#statSession"); if(el) el.textContent = formatTime(now()-sessionStart); } },1000);
+
+  // Show Favicon Options on hub by default (unless user hid it)
+  ensureOptionsVisibilityOnLobby();
+
+  // Preload likely version on hub
+  preloadInMenu();
+  updateButtons(); refreshStats();
 });
 
-/* -------- UI wires -------- */
-$("#staticMenuClose").onclick=()=>$("#staticMenu").style.display='none';
-$("#posToggle").onclick=cycleCorner;
-$("#helpBtn").onclick=toggleHelp;
-document.addEventListener('keydown',e=>{
-  if(e.key==='Escape'){
-    if($("#helpOverlay").style.display==='block')toggleHelp();
-    else if(cur)goBack();
+/* Keep focus on game if playing */
+setInterval(()=>{
+  if(cur){
+    const f=$(`#${cur}`);
+    if(f && f.dataset.ld){ try{f.contentWindow.focus();focusWarn=false;}catch(e){ if(!focusWarn){console.warn(e);focusWarn=true;} } }
   }
-});
+},2500);
 
-/* -------- Leave warn -------- */
+/* Leave warn */
 window.addEventListener('beforeunload',e=>{
-  e.preventDefault();e.returnValue='Are you sure you want to leave?';
+  if(cur) commitPlayTime(cur);
+  e.preventDefault(); e.returnValue='Are you sure you want to leave?';
 });
 </script>
 </body>
